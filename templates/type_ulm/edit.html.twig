@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit TypeUlm{% endblock %}
+
+{% block body %}
+    <h1>Edit TypeUlm</h1>
+
+    {{ include('type_ulm/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('type_ulm_index') }}">back to list</a>
+
+    {{ include('type_ulm/_delete_form.html.twig') }}
+{% endblock %}
