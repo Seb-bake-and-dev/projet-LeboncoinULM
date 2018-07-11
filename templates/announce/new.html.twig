@@ -3,9 +3,11 @@
 {% block title %}New Announce{% endblock %}
 
 {% block body %}
+    <div class="container pt-5">
     <h1>Create new Announce</h1>
 
     {{ include('announce/_form.html.twig') }}
 
-    <a href="{{ path('announce_index') }}">back to list</a>
+    <a href="{{ path('announce_pendulaires') }}">back to list</a>
+    </div>
 {% endblock %}

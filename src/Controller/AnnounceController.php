@@ -16,11 +16,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class AnnounceController extends Controller
 {
     /**
-     * @Route("/", name="announce_index", methods="GET")
+     * @Route("/pendulaires", name="announce_pendulaires", methods="GET")
      */
     public function index(AnnounceRepository $announceRepository): Response
     {
-        return $this->render('announce/index.html.twig', ['announces' => $announceRepository->findAll()]);
+        return $this->render('announce/pendulaires/index.html.twig', ['announces' => $announceRepository->findAll()]);
     }
 
     /**
@@ -37,7 +37,7 @@ class AnnounceController extends Controller
             $em->persist($announce);
             $em->flush();
 
-            return $this->redirectToRoute('announce_index');
+            return $this->redirectToRoute('announce_pendulaires');
         }
 
         return $this->render('announce/new.html.twig', [
