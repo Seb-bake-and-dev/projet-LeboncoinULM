@@ -22,7 +22,11 @@
                 <td>{{ announce.Marque }}</td>
                 <td>{{ announce.Model }}</td>
                 <td>{{ announce.Description }}</td>
-                <td>
+
+                <img class="img-responsive w-25"
+                     src="{{ asset('images/products/' ~ announce.picture) }}"
+                     alt="{{ announce.picture }}">
+                 <td>
                     <a href="{{ path('announce_show', {'id': announce.id}) }}">show</a>
                     <a href="{{ path('announce_edit', {'id': announce.id}) }}">edit</a>
                 </td>

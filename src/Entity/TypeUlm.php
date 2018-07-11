@@ -91,5 +91,34 @@ class TypeUlm
         return $this;
     }
 
-}
+    /**
+     * @return Collection|Announce[]
+     */
+    public function getMarque(): Collection
+    {
+        return $this->Marque;
+    }
 
+    public function addMarque(Announce $marque): self
+    {
+        if (!$this->Marque->contains($marque)) {
+            $this->Marque[] = $marque;
+            $marque->setType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMarque(Announce $marque): self
+    {
+        if ($this->Marque->contains($marque)) {
+            $this->Marque->removeElement($marque);
+            // set the owning side to null (unless already changed)
+            if ($marque->getType() === $this) {
+                $marque->setType(null);
+            }
+        }
+
+        return $this;
+    }
+}

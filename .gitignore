@@ -9,6 +9,7 @@
 ###> symfony/webpack-encore-pack ###
 /node_modules/
 /public/build/
+/public/images/
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-pack ###
@@ -21,3 +22,4 @@ yarn-error.log
 ###> symfony/web-server-bundle ###
 /.web-server-pid
 ###< symfony/web-server-bundle ###
+/src/Migrations/
