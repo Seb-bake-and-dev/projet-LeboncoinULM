@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="container pt-5">
+
+        <img class="img-responsive w-100 text-center border"
+             src="{{ asset('images/products/' ~ announce.picture) }}"
+             alt="{{ announce.picture }}">
+
+        <h1>{{ announce.marque }} - {{ announce.model }} - {{ announce.price }}€</h1>
+        <p><strong>-> {{ announce.state.state}}</strong> / Posté le: {{ announce.DatePost.date|date("m/d/Y") }}</p>
+        <p>{{ announce.description }}</p>
+
+        <a href="{{ path('announce_pendulaires') }}" class="btn btn-primary">Retour</a>
+
+    </div>
+{% endblock %}

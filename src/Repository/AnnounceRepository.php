@@ -29,6 +29,16 @@ class AnnounceRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    public function findAnnouncementsByPrice(string $priceName)
+    {
+        $query = $this->createQueryBuilder('a')
+            ->where('a.Price')
+            ->orderBy('a.Price', 'ASC')
+            ->getQuery();
+
+        return $query->getResult();
+    }
+
 //    /**
 //     * @return Announce[] Returns an array of Announce objects
 //     */

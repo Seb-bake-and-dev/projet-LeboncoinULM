@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Announce;
 use App\Form\AnnounceType;
+use App\Form\SearchPriceType;
 use App\Form\SearchType;
 use App\Repository\AnnounceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,15 +24,32 @@ class AnnounceController extends Controller
     {
         $form = $this->createForm(SearchType::class);
         $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $announces = $em->getRepository(Announce::class)->findAll();
+        $paginator = $this->get('knp_paginator');
+        $result= $paginator->paginate(
+            $announces,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 5)
+        );
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $data = $form->getData();
             $modelSearch = $data['search'];
             $announces = $em->getRepository(Announce::class)->findAnnouncementsByModel($modelSearch);
+            $paginator = $this->get('knp_paginator');
+            $result= $paginator->paginate(
+                $announces,
+                $request->query->getInt('page', 1),
+                $request->query->getInt('limit', 5));
 
+            $announcesPrice = $em->getRepository(Announce::class)->findBy(
+                [],
+                ['Price' => 'ASC']
+            );
             return $this->render('announce/pendulaires/index.html.twig', [
-                'announces' => $announces,
+                'announces' => $result,
                 'modelSearch' => $modelSearch,
                 'form' => $form->createView(),
             ]);
@@ -39,11 +57,12 @@ class AnnounceController extends Controller
 
         return $this->render(
             'announce/pendulaires/index.html.twig',
-            ['announces' => $announceRepository->findAll(),
+            ['announces' => $result,
                 'form' => $form->createView(),
             ]
         );
     }
+
 
     /**
      * @Route("/new", name="announce_new", methods="GET|POST")
@@ -73,7 +92,7 @@ class AnnounceController extends Controller
      */
     public function show(Announce $announce): Response
     {
-        return $this->render('announce/show.html.twig', ['announce' => $announce]);
+        return $this->render('announce/pendulaires/show.html.twig', ['announce' => $announce]);
     }
 
     /**
