@@ -42,6 +42,4 @@ class AppFixtures extends Fixture
             ['John Doe', 'john_user', 'kitten', 'john_user@symfony.com', ['ROLE_USER']],
         ];
     }
-
-
 }

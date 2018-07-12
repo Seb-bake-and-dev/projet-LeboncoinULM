@@ -5,17 +5,12 @@ namespace App\DataFixtures;
 use App\Entity\TypeUlm;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class TypeFixtures extends Fixture
 {
-    private $passwordEncoder;
 
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
-    {
-        $this->passwordEncoder = $passwordEncoder;
-    }
 
     public function load(ObjectManager $manager)
     {
@@ -32,16 +27,21 @@ class TypeFixtures extends Fixture
         $type4->setType('Aérostats');
 
         $type5 = new TypeUlm();
-        $type5->setType('hélicoptères');
+        $type5->setType('Hélicoptères');
+
+        $type6 = new TypeUlm();
+        $type6->setType('Autogire');
 
 
         $manager->persist($type);
-        $manager->persist($type5);
         $manager->persist($type2);
         $manager->persist($type3);
         $manager->persist($type4);
+        $manager->persist($type5);
+        $manager->persist($type6);
 
         $manager->flush();
-    }
 
+        $this->addReference('Pendulaires', $type);
+    }
 }

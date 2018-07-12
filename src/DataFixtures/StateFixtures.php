@@ -33,6 +33,7 @@ class StateFixtures extends Fixture
         $manager->persist($state3);
 
         $manager->flush();
-    }
 
+        $this->addReference('Good', $state);
+    }
 }

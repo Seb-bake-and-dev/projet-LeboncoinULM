@@ -1,17 +1,31 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-<div class="container pt-5">
-    <div class="card-columns justify-content-center">
-        {% for announce in announces %}
-            <div class="card mx-auto" style="width: 18rem;">
-                <img class="card-img-top" src="{{ asset('images/products/' ~ announce.picture) }}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">
-                        {{ announce.description|length > 50 ? announce.description|slice(0, 50) ~ '...' : announce.description }}</p>                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        {% endfor %}
+    <div class="container pt-5">
+        {{ form_start(form) }}
+        <div class="row justify-content-center">
+        {{ form_row(form.search) }}
+        {{ form_row(form.Rechercher) }}
+
+        </div>
+        {{ form_end(form) }}
+
+        <ul class="cards mt-3">
+            {% for announce in announces %}
+                <li class="cards_item ">
+                    <div class="card">
+                        <div class="card_image">
+                            <img src="{{ asset('images/products/' ~ announce.picture) }}" class=" img-announce">
+                        </div>
+                        <div class="card_content">
+                            <h2 class="card_heading">{{ announce.model }}</h2>
+                            <p>{{ announce.price }} € - {{ announce.DatePost.date|date("m/d/Y") }}</p>
+                            <a href="#" class="card_button">Button</a>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
     </div>
 {% endblock %}
+

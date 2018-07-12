@@ -61,7 +61,7 @@ class Announce
      */
     private $imageFile;
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable = true)
      *
      * @var string
      */
@@ -72,6 +72,16 @@ class Announce
      * @var \DateTime
      */
     private $updatedAt;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $Price;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $DatePost;
 
 
     /**
@@ -188,6 +198,30 @@ class Announce
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->Price;
+    }
+
+    public function setPrice(int $Price): self
+    {
+        $this->Price = $Price;
+
+        return $this;
+    }
+
+    public function getDatePost(): ?\DateTimeInterface
+    {
+        return $this->DatePost;
+    }
+
+    public function setDatePost(\DateTimeInterface $DatePost): self
+    {
+        $this->DatePost = $DatePost;
 
         return $this;
     }

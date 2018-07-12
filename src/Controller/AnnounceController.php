@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Announce;
 use App\Form\AnnounceType;
+use App\Form\SearchType;
 use App\Repository\AnnounceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,11 +17,32 @@ use Symfony\Component\Routing\Annotation\Route;
 class AnnounceController extends Controller
 {
     /**
-     * @Route("/pendulaires", name="announce_pendulaires", methods="GET")
+     * @Route("/pendulaires", name="announce_pendulaires", methods="GET|POST")
      */
-    public function index(AnnounceRepository $announceRepository): Response
+    public function index(AnnounceRepository $announceRepository, Request $request): Response
     {
-        return $this->render('announce/pendulaires/index.html.twig', ['announces' => $announceRepository->findAll()]);
+        $form = $this->createForm(SearchType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $data = $form->getData();
+            $modelSearch = $data['search'];
+            $announces = $em->getRepository(Announce::class)->findAnnouncementsByModel($modelSearch);
+
+            return $this->render('announce/pendulaires/index.html.twig', [
+                'announces' => $announces,
+                'modelSearch' => $modelSearch,
+                'form' => $form->createView(),
+            ]);
+        }
+
+        return $this->render(
+            'announce/pendulaires/index.html.twig',
+            ['announces' => $announceRepository->findAll(),
+                'form' => $form->createView(),
+            ]
+        );
     }
 
     /**
@@ -40,7 +62,7 @@ class AnnounceController extends Controller
             return $this->redirectToRoute('announce_pendulaires');
         }
 
-        return $this->render('announce/new.html.twig', [
+        return $this->render('user/new.html.twig', [
             'announce' => $announce,
             'form' => $form->createView(),
         ]);
@@ -79,7 +101,7 @@ class AnnounceController extends Controller
      */
     public function delete(Request $request, Announce $announce): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$announce->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $announce->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($announce);
             $em->flush();

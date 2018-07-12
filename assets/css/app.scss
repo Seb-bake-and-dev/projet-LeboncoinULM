@@ -1,3 +1,27 @@
-@import "~bootswatch/dist/united/variables";
+@import "~bootswatch/dist/flatly/variables";
 @import "~bootstrap/scss/bootstrap";
-@import "~bootswatch/dist/united/bootswatch";
+@import "~bootswatch/dist/flatly/bootswatch";
+@import "template_annouce";
+@import "home";
+
+body{
+  background-color: #f0f0f0;
+}
+.container{
+  background-color: #ffffff;
+  padding:5em;
+}
+.container-fluid{
+  padding:0;
+}
+
+.a{
+  color:white;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link:focus {
+  &:hover {
+    color: orange;
+  }
+}
+
