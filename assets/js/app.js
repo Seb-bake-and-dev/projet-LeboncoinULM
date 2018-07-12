@@ -1,7 +1,7 @@
 require('bootstrap');
 
 // function([string1, string2],target id,[color1,color2])
-consoleText(['Le coin de l\'ulm.', 'Pendulaire', 'Paramoteur', 'Il y a tout ici !'], 'text',['tomato','rebeccapurple','lightblue']);
+consoleText(['Le coin de l\'ulm.', 'Pendulaire', 'Paramoteur', 'Il y a tout ici !'], 'text',['black','rebeccapurple','lightblue']);
 
 function consoleText(words, id, colors) {
     if (colors === undefined) colors = ['#fff'];
@@ -51,3 +51,4 @@ function consoleText(words, id, colors) {
         }
     }, 400)
 }
+
