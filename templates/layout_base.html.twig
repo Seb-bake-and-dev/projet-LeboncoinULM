@@ -24,20 +24,19 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('announce_new') }}">Ajouter une annonce</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="#">About</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav w-100 deconnect justify-content-end">
                 <li class="nav-link  float-md-right">
-                    <a href="{{ path('security_login') }}">
-                        Profil {{ app.user.username }}
-                    </a>
-                    |
-                    <a href="{{ path('security_logout') }}">
-                        Déconnexion
+                <a href="{{ path('security_login') }}">
+                    Connexion
+                </a>
+                </li>
+
+                <li class="nav-link  float-md-right">
+                    <a href="{{ path('user_registration') }}">
+                        Créer un compte
                     </a>
                 </li>
             </ul>

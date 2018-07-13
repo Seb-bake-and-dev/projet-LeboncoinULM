@@ -1,7 +1,7 @@
 require('bootstrap');
 
 // function([string1, string2],target id,[color1,color2])
-consoleText(['Le coin de l\'ulm.', 'Pendulaire', 'Paramoteur', 'Il y a tout ici !'], 'text',['black','rebeccapurple','lightblue']);
+consoleText(['Le coin de l\'ulm.', 'Pendulaire', 'Paramoteur'], 'text',['white']);
 
 function consoleText(words, id, colors) {
     if (colors === undefined) colors = ['#fff'];
@@ -51,4 +51,20 @@ function consoleText(words, id, colors) {
         }
     }, 400)
 }
+
+
+$(document).ready(function() {
+    var origheight = $("#trans1").height();
+    var height = $(window).height();
+    if (height > origheight) {
+        $("#trans1").height(height);
+    }
+
+    $(window).scroll(function(){
+        var x = $(this).scrollTop();
+        $('#trans1').css('background-position','center -'+parseInt(x/5)+'px');
+    });
+
+});
+
 

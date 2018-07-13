@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -60,6 +62,7 @@ class Announce
      * @var File
      */
     private $imageFile;
+
     /**
      * @ORM\Column(type="string", length=255, nullable = true)
      *
@@ -83,6 +86,15 @@ class Announce
      */
     private $DatePost;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="Announce")
+     */
+    private $announce;
+
+    public function __construct()
+    {
+        $this->announce = new ArrayCollection();
+    }
 
     /**
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
@@ -115,14 +127,6 @@ class Announce
     public function getImageSize(): ?int
     {
         return $this->imageSize;
-    }
-    /**
-     * Set order
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->reservationEquipments = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getId()
@@ -222,6 +226,37 @@ class Announce
     public function setDatePost(\DateTimeInterface $DatePost): self
     {
         $this->DatePost = $DatePost;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getAnnounce(): Collection
+    {
+        return $this->announce;
+    }
+
+    public function addAnnounce(Comment $announce): self
+    {
+        if (!$this->announce->contains($announce)) {
+            $this->announce[] = $announce;
+            $announce->setAnnounce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnounce(Comment $announce): self
+    {
+        if ($this->announce->contains($announce)) {
+            $this->announce->removeElement($announce);
+            // set the owning side to null (unless already changed)
+            if ($announce->getAnnounce() === $this) {
+                $announce->setAnnounce(null);
+            }
+        }
 
         return $this;
     }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Announce;
+use App\Entity\TypeUlm;
 use App\Form\AnnounceType;
 use App\Form\SearchPriceType;
 use App\Form\SearchType;
@@ -25,9 +26,11 @@ class AnnounceController extends Controller
         $form = $this->createForm(SearchType::class);
         $form->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
-        $announces = $em->getRepository(Announce::class)->findAll();
+        $pendulaires = $em->getRepository(TypeUlm::class)->findBy(['Type' => 'Pendulaires']);
+        $announces = $em->getRepository(Announce::class)->findBy(['Type' => $pendulaires]);
+
         $paginator = $this->get('knp_paginator');
-        $result= $paginator->paginate(
+        $result = $paginator->paginate(
             $announces,
             $request->query->getInt('page', 1),
             $request->query->getInt('limit', 5)
@@ -39,15 +42,11 @@ class AnnounceController extends Controller
             $modelSearch = $data['search'];
             $announces = $em->getRepository(Announce::class)->findAnnouncementsByModel($modelSearch);
             $paginator = $this->get('knp_paginator');
-            $result= $paginator->paginate(
+            $result = $paginator->paginate(
                 $announces,
                 $request->query->getInt('page', 1),
                 $request->query->getInt('limit', 5));
 
-            $announcesPrice = $em->getRepository(Announce::class)->findBy(
-                [],
-                ['Price' => 'ASC']
-            );
             return $this->render('announce/pendulaires/index.html.twig', [
                 'announces' => $result,
                 'modelSearch' => $modelSearch,
@@ -63,7 +62,6 @@ class AnnounceController extends Controller
         );
     }
 
-
     /**
      * @Route("/new", name="announce_new", methods="GET|POST")
      */
@@ -75,6 +73,7 @@ class AnnounceController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $announce->setDatePost(NEW \DateTime ('NOW'));
             $em->persist($announce);
             $em->flush();
 

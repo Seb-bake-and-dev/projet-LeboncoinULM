@@ -3,32 +3,57 @@
 namespace App\Form;
 
 use App\Entity\Announce;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use App\Entity\State;
+use App\Entity\TypeUlm;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Vich\UploaderBundle\Form\Type\VichFileType;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class AnnounceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Type')
-            ->add('state')
-            ->add('imageFile', FileType::class, array('label'=> 'Ajouter une image', 'required' => false))
-            ->add('Marque')
-            ->add('Model')
-            ->add('Description')
-            ->add('date_post', DateType::class, [
-                'required' => true,
-                'label' => 'Début des travaux',
-                'widget' => 'single_text',
-                'html5' => true
+            ->add('Type', EntityType::class, [
+                'label' => 'Type d\'ulm',
+                'class' => TypeUlm::class,
             ])
-            ->add('Price');
+            ->add('state', EntityType::class, [
+                'label' => 'Etat de l\'ulm',
+                'class' => state::class,
+            ])
+            ->add('Price', MoneyType::class, [
+                'label' => 'Prix de vente'
+            ])
+            ->add('imageFile', FileType::class, [
+                'label' => 'Ajouter une image',
+                'required' => false,
+            ])
+            ->add('Marque', TextType::class, [
+                'label' => 'Marque de l\'ulm',
+                'required' => true,
+            ])
+            ->add('Model', TextType::class, [
+                'label' => 'Modèle de l\'ulm',
+                'required' => true,
+            ])
+            ->add('Description', TextareaType::class, [
+                'required' => true,
+                'label' => 'Description de l\'annonce',
+                'attr' => ['rows' => '7', 'cols' => '6']
+            ])
+            ->add('Submit', SubmitType::class, [
+                'label' => 'Envoyer',
+                'attr' => [
+                    'class' => 'btn btn-primary w-50 d-flex mx-auto justify-content-center'
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

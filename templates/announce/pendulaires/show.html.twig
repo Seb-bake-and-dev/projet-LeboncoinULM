@@ -1,17 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <div class="container pt-5">
-
-        <img class="img-responsive w-100 text-center border"
+    <div class="container">
+        <img class="img-responsive w-100 text-center"
              src="{{ asset('images/products/' ~ announce.picture) }}"
              alt="{{ announce.picture }}">
+    <hr>
+        <h1 class="text-center">{{ announce.marque }} - {{ announce.model }} - {{ announce.price }}€</h1>
+        <hr>
+        <p><strong>-> {{ announce.state.state }}</strong> / Posté le: {{ announce.DatePost.date|date("m/d/Y") }}</p>
+        <p class="mb-5">Description: {{ announce.description|nl2br }}</p>
 
-        <h1>{{ announce.marque }} - {{ announce.model }} - {{ announce.price }}€</h1>
-        <p><strong>-> {{ announce.state.state}}</strong> / Posté le: {{ announce.DatePost.date|date("m/d/Y") }}</p>
-        <p>{{ announce.description }}</p>
+        <a href="{{ path('announce_pendulaires') }}" class="btn btn-warning"><i class="far fa-heart"></i> Mettre en favoris</a>
+        <a href="{{ path('announce_pendulaires') }}" class="btn btn-primary"><i class="far fa-envelope"></i> Contacter l'auteur</a>
 
-        <a href="{{ path('announce_pendulaires') }}" class="btn btn-primary">Retour</a>
+
+        <a href="{{ path('announce_pendulaires') }}" class="btn btn-primary"><i class="fas fa-chevron-left"></i> Retour</a>
 
     </div>
 {% endblock %}

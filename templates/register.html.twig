@@ -1,7 +1,12 @@
-{% extends 'base.html.twig' %}
-
+{% extends "base.html.twig" %}
 {% block content %}
-
+    <div class="container pt-2">
+    <div class="row mx-auto my-5 justify-content-center">
+    <div class="col-10">
+    <div class="well bg-light p-5">
+        <div class="text-center text-dark font-weight-bold h3 pb-3">
+            Enregistrement
+        </div>
 
     {{ form_start(form) }}
     {{ form_row(form.fullName) }}
@@ -10,9 +15,9 @@
     {{ form_row(form.password.first) }}
     {{ form_row(form.password.second) }}
 
-    <button type="submit">S'inscrire !</button>
+    <button type="submit" class="btn btn-primary">S'inscrire !</button>
     {{ form_end(form) }}
+    </div></div></div>
 
-
-
+</div>
 {% endblock %}
