@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Announce;
+use App\Entity\Region;
 use App\Entity\TypeUlm;
 use App\Form\AnnounceType;
+use App\Form\RegionType;
 use App\Form\SearchPriceType;
 use App\Form\SearchType;
 use App\Repository\AnnounceRepository;
@@ -25,21 +27,23 @@ class AnnouncePendulaireController extends Controller
     {
         $form = $this->createForm(SearchType::class);
         $form->handleRequest($request);
+        $form2 = $this->createForm(RegionType::class);
+        $form2->handleRequest($request);
+
         $em = $this->getDoctrine()->getManager();
-        $pendulaires = $em->getRepository(TypeUlm::class)->findBy(['Type' => 'Pendulaires']);
-        $announces = $em->getRepository(Announce::class)->findBy(['Type' => $pendulaires, 'enabled' => 1], ['DatePost' => 'DESC ']);
 
-        $paginator = $this->get('knp_paginator');
-        $result = $paginator->paginate(
-            $announces,
-            $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 9)
-        );
+        $data = $form2->getData();
+        $region = $data['filter'];
+        if ($form2->isSubmitted() && $region != null) {
+            $announces = $em->getRepository(Announce::class)->findByRegionField($region->getName());
+        } else {
+            $pendulaires = $em->getRepository(TypeUlm::class)->findBy(['Type' => 'Pendulaires']);
+            $announces = $em->getRepository(Announce::class)->findBy(['Type' => $pendulaires, 'enabled' => 1], ['DatePost' => 'DESC ']);
+        }
 
+        $data2 = $form->getData();
+        $modelSearch = $data2['search'];
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $data = $form->getData();
-            $modelSearch = $data['search'];
             $announces = $em->getRepository(Announce::class)->findAnnouncementsByModel($modelSearch);
             $paginator = $this->get('knp_paginator');
             $result = $paginator->paginate(
@@ -51,14 +55,25 @@ class AnnouncePendulaireController extends Controller
             return $this->render('announce/pendulaires/index.html.twig', [
                 'announces' => $result,
                 'modelSearch' => $modelSearch,
+                'region' => $region,
                 'form' => $form->createView(),
+                'form2' => $form2->createView(),
             ]);
         }
+
+
+        $paginator = $this->get('knp_paginator');
+        $result = $paginator->paginate(
+            $announces,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 9));
+
 
         return $this->render(
             'announce/pendulaires/index.html.twig',
             ['announces' => $result,
                 'form' => $form->createView(),
+                'form2' => $form2->createView(),
             ]
         );
     }
@@ -120,12 +135,13 @@ class AnnouncePendulaireController extends Controller
      */
     public function delete(Request $request, Announce $announce): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $announce->getId(), $request->request->get('_token'))) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($announce);
-            $em->flush();
-        }
+        $form = $this->createForm(AnnounceType::class, $announce);
+        $form->handleRequest($request);
 
-        return $this->redirectToRoute('announce_index');
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('announce_edit', ['id' => $announce->getId()]);
+        }
     }
 }

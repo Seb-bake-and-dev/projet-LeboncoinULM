@@ -44,11 +44,11 @@ class AnnounceType extends AbstractType
                 'required' => false,
             ])
             ->add('imageFile2', FileType::class, [
-                'label' => 'Ajouter une image',
+                'label' => 'Ajouter une seconde image',
                 'required' => false,
             ])
             ->add('imageFile3', FileType::class, [
-                'label' => 'Ajouter une image',
+                'label' => 'Ajouter une troisième image',
                 'required' => false,
             ])
             ->add('Marque', TextType::class, [

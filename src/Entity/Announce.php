@@ -183,6 +183,11 @@ class Announce
      */
     private $user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Region", inversedBy="announce")
+     */
+    private $region;
+
     public function __construct()
     {
         $this->announce = new ArrayCollection();
@@ -489,6 +494,18 @@ class Announce
     public function setEnabled(?bool $enabled): self
     {
         $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    public function getRegion(): ?Region
+    {
+        return $this->region;
+    }
+
+    public function setRegion(?Region $region): self
+    {
+        $this->region = $region;
 
         return $this;
     }

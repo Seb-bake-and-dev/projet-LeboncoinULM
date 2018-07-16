@@ -23,7 +23,7 @@ class AnnounceRepository extends ServiceEntityRepository
     {
         $query = $this->createQueryBuilder('a')
             ->where('a.Model LIKE :nameModel')
-            ->setParameter('nameModel', '%' . $modelName .'%')
+            ->setParameter('nameModel', '%' . $modelName . '%')
             ->getQuery();
 
         return $query->getResult();
@@ -39,22 +39,21 @@ class AnnounceRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-//    /**
-//     * @return Announce[] Returns an array of Announce objects
-//     */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Announce[] Returns an array of Announce objects
+     */
+
+    public function findByRegionField(string $region)
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
+            ->join('a.region', 'r')
+            ->where('r.name = :region')
+            ->setParameter(':region', $region)
             ->getQuery()
-            ->getResult()
-        ;
+
+            ->getResult();
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Announce
