@@ -34,11 +34,13 @@
                 </ul>
             </div>
             <div class="tab-pane fade text-center mt-5" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <p><i class="fas fa-user-circle"></i> <strong>Pseudo:</strong> {{ app.user.username }}</p>
-                <p><i class="far fa-user-circle"></i> <strong>Nom:</strong> {{ app.user.fullname }}</p>
-                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> {{ app.user.email }}</p>
-                <p><i class="fas fa-phone"></i> <strong>Téléphone:</strong> {{ app.user.phone }}</p>
-                <a href="{{ path('announce_pendulaires') }}" class="btn btn-primary">Editer votre compte</a>
+                <div class="well bg-light p-5">
+                    <p><i class="fas fa-user-circle"></i> <strong>Pseudo:</strong> {{ app.user.username }}</p>
+                    <p><i class="far fa-user-circle"></i> <strong>Nom:</strong> {{ app.user.fullname }}</p>
+                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> {{ app.user.email }}</p>
+                    <p><i class="fas fa-phone"></i> <strong>Téléphone:</strong> {{ app.user.phone }}</p>
+                    <a href="{{ path('announce_pendulaires') }}" class="btn btn-primary">Editer votre compte</a>
+                </div>
             </div>
         </div>
     </div>
