@@ -24,6 +24,7 @@ $('#plus').click(function() {
 
 });
 $('#minus').click(function() {
+    $('#showUpload1').addClass("d-none");
     $('#showUpload').addClass("d-none");
     $('#plus').removeClass("d-none");
     $('#minus').addClass("d-none");

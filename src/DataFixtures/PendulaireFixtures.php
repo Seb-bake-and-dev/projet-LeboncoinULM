@@ -28,6 +28,8 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce->setDatePost(new \DateTime('10-12-2018'));
         $announce->setState($this->getReference('Good'));
         $announce->setPicture('fixture1.jpg');
+        $announce->setPicture2('fixture8.jpg');
+        $announce->setPicture3('fixture9.jpg');
         $announce->setUser($this->getReference('john_user'));
         $manager->persist($announce);
 
@@ -40,6 +42,8 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce2->setDatePost(new \DateTime('06-05-2018'));
         $announce2->setState($this->getReference('Good'));
         $announce2->setPicture('fixture2.jpg');
+        $announce2->setPicture2('fixture8.jpg');
+        $announce2->setPicture3('fixture9.jpg');
         $announce2->setUser($this->getReference('john_user'));
         $manager->persist($announce2);
 
@@ -52,6 +56,8 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce3->setDatePost(new \DateTime('06-05-2018'));
         $announce3->setState($this->getReference('Good'));
         $announce3->setPicture('fixture3.jpg');
+        $announce3->setPicture2('fixture8.jpg');
+        $announce3->setPicture3('fixture9.jpg');
         $announce3->setUser($this->getReference('john_user'));
 
         $manager->persist($announce3);
@@ -65,6 +71,8 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce4->setDatePost(new \DateTime('06-05-2018'));
         $announce4->setState($this->getReference('Good'));
         $announce4->setPicture('fixture4.jpg');
+        $announce4->setPicture2('fixture8.jpg');
+        $announce4->setPicture3('fixture9.jpg');
         $announce4->setUser($this->getReference('john_user'));
 
         $manager->persist($announce4);
@@ -78,6 +86,8 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce5->setDatePost(new \DateTime('06-05-2018'));
         $announce5->setState($this->getReference('Good'));
         $announce5->setPicture('fixture5.jpg');
+        $announce5->setPicture2('fixture8.jpg');
+        $announce5->setPicture3('fixture9.jpg');
         $announce5->setUser($this->getReference('john_user'));
 
         $manager->persist($announce5);
@@ -91,6 +101,8 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce6->setDatePost(new \DateTime('06-05-2018'));
         $announce6->setState($this->getReference('Good'));
         $announce6->setPicture('fixture6.jpg');
+        $announce6->setPicture2('fixture8.jpg');
+        $announce6->setPicture3('fixture9.jpg');
         $announce6->setUser($this->getReference('john_user'));
 
         $manager->persist($announce6);
@@ -104,6 +116,8 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce7->setDatePost(new \DateTime('25-05-2018'));
         $announce7->setState($this->getReference('Good'));
         $announce7->setPicture('fixture7.jpg');
+        $announce7->setPicture2('fixture8.jpg');
+        $announce7->setPicture3('fixture9.jpg');
         $announce7->setUser($this->getReference('john_user'));
 
         $manager->persist($announce7);
@@ -117,6 +131,8 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce8->setDatePost(new \DateTime('16-12-2018'));
         $announce8->setState($this->getReference('Good'));
         $announce8->setPicture('fixture8.jpg');
+        $announce8->setPicture2('fixture8.jpg');
+        $announce8->setPicture3('fixture9.jpg');
         $announce8->setUser($this->getReference('john_user'));
 
         $manager->persist($announce8);
@@ -130,6 +146,8 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce9->setDatePost(new \DateTime('06-09-2018'));
         $announce9->setState($this->getReference('Good'));
         $announce9->setPicture('fixture9.jpg');
+        $announce9->setPicture2('fixture8.jpg');
+        $announce9->setPicture3('fixture9.jpg');
         $announce9->setUser($this->getReference('john_user'));
 
         $manager->persist($announce9);
@@ -143,6 +161,8 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce10->setDatePost(new \DateTime('06-01-2018'));
         $announce10->setState($this->getReference('Good'));
         $announce10->setPicture('fixture10.jpg');
+        $announce10->setPicture2('fixture8.jpg');
+        $announce10->setPicture3('fixture9.jpg');
         $announce10->setUser($this->getReference('john_user'));
 
         $manager->persist($announce10);
