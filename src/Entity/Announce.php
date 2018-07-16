@@ -32,6 +32,33 @@ class Announce
      * @ORM\Column(type="string", length=255)
      */
     private $Marque;
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $vitesseMax;
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $nbrHvol;
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $yearUlm;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $parachute;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $transponder;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $enabled;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -128,6 +155,7 @@ class Announce
         $this->picture3 = $picture3;
         return $this;
     }
+
     /**
      * @ORM\Column(type="datetime", nullable = true)
      *
@@ -387,6 +415,80 @@ class Announce
     public function setPicture2(?string $picture2): self
     {
         $this->picture2 = $picture2;
+
+        return $this;
+    }
+
+
+    public function getParachute(): ?bool
+    {
+        return $this->parachute;
+    }
+
+    public function setParachute(?bool $parachute): self
+    {
+        $this->parachute = $parachute;
+
+        return $this;
+    }
+
+    public function getTransponder(): ?bool
+    {
+        return $this->transponder;
+    }
+
+    public function setTransponder(?bool $transponder): self
+    {
+        $this->transponder = $transponder;
+
+        return $this;
+    }
+
+
+    public function getVitesseMax(): ?int
+    {
+        return $this->vitesseMax;
+    }
+
+    public function setVitesseMax(?int $vitesseMax): self
+    {
+        $this->vitesseMax = $vitesseMax;
+
+        return $this;
+    }
+
+    public function getNbrHvol(): ?int
+    {
+        return $this->nbrHvol;
+    }
+
+    public function setNbrHvol(?int $nbrHvol): self
+    {
+        $this->nbrHvol = $nbrHvol;
+
+        return $this;
+    }
+
+    public function getYearUlm(): ?int
+    {
+        return $this->yearUlm;
+    }
+
+    public function setYearUlm(?int $yearUlm): self
+    {
+        $this->yearUlm = $yearUlm;
+
+        return $this;
+    }
+
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled(?bool $enabled): self
+    {
+        $this->enabled = $enabled;
 
         return $this;
     }

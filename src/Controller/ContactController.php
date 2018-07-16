@@ -22,7 +22,6 @@ class ContactController extends AbstractController
         $contact = $this->getUser()->getEmail();
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $contactFormData = $form->getData();
             $message = (new \Swift_Message('You Got Mail!'))
                 ->setFrom($contactFormData['from'])
@@ -42,5 +41,4 @@ class ContactController extends AbstractController
             'announce'=>$announce,
         ]);
     }
-
 }

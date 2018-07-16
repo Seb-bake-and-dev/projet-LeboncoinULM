@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -16,11 +17,21 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fullName', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('username', TextType::class)
+            ->add('fullName', TextType::class, [
+                'label' => "Nom"
+            ])
+            ->add('email', EmailType::class, [
+                'label' => 'Email'
+            ])
+            ->add('username', TextType::class, [
+                'label' => 'Pseudo'
+            ])
+            ->add('phone', IntegerType::class, [
+                'label' => 'Téléphone'
+            ])
             ->add('password', RepeatedType::class, array(
                 'type' => PasswordType::class,
+                'label' => 'Mot de passe',
                 'first_options'  => array('label' => 'Password'),
                 'second_options' => array('label' => 'Repeat Password'),
             ))

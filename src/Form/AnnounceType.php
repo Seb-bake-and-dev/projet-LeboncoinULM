@@ -7,8 +7,12 @@ use App\Entity\State;
 use App\Entity\TypeUlm;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -17,6 +21,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AnnounceType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -49,7 +57,27 @@ class AnnounceType extends AbstractType
             ])
             ->add('Model', TextType::class, [
                 'label' => 'Modèle de l\'ulm',
-                'required' => true,
+                'required' => false,
+            ])
+            ->add('vitesseMax', IntegerType::class, [
+                'label' => 'Vitesse Maxi de l\'ulm',
+                'required' => false,
+            ])
+            ->add('nbrHvol', IntegerType::class, [
+                'label' => 'Heures de vols',
+                'required' => false,
+            ])
+            ->add('yearUlm',IntegerType::class, [
+                'label' => 'Année d\'achat',
+                'required' => false,
+            ])
+            ->add('parachute', CheckboxType::class, [
+                'label' => 'Parachute',
+                'required' => false,
+            ])
+            ->add('transponder', CheckboxType::class, [
+                'label' => 'Transpondeur:',
+                'required' => false,
             ])
             ->add('Description', TextareaType::class, [
                 'required' => true,

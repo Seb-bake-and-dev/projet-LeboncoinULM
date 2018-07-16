@@ -5,12 +5,16 @@
             <div class="col-6">
                 <div class="mt-4">
                     <h5 class="card-title">Formulaire de contact</h5>
-                    {{ form_start(form) }}
-                    {{ form_widget(form) }}
-                    <a href="{{ path('announce_show', {'id': announce.id}) }}" class="btn btn-dark"><i class="fas fa-chevron-left"></i> Retour</a>
+                    <strong>Téléphone du vendeur: 0{{ announce.user.phone }}</strong>
+                    <div class="mt-3">
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <a href="{{ path('announce_show', {'id': announce.id}) }}" class="btn btn-dark"><i
+                                    class="fas fa-chevron-left"></i> Retour</a>
 
-                    <button type="submit" class="btn btn-primary">Envoyer le message !</button>
-                    {{ form_end(form) }}
+                        <button type="submit" class="btn btn-primary">Envoyer le message !</button>
+                        {{ form_end(form) }}
+                    </div>
                 </div>
             </div>
 

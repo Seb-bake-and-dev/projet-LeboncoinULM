@@ -57,6 +57,12 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=64)
      */
     private $password;
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="integer", length=64)
+     */
+    private $phone;
 
     /**
      * @var array
@@ -247,6 +253,18 @@ class User implements UserInterface, \Serializable
                 $announce->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPhone(): ?int
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(int $phone): self
+    {
+        $this->phone = $phone;
 
         return $this;
     }

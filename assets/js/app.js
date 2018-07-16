@@ -1,6 +1,6 @@
 require('bootstrap');
 
-$(document).ready(function() {
+$(document).ready(function () {
     var origheight = $("#trans1").height();
     var height = $(window).height();
     if (height > origheight) {
@@ -8,14 +8,14 @@ $(document).ready(function() {
     }
 
 
-    $(window).scroll(function(){
+    $(window).scroll(function () {
         var x = $(this).scrollTop();
-        $('#trans1').css('background-position','center -'+parseInt(x/5)+'px');
+        $('#trans1').css('background-position', 'center -' + parseInt(x / 5) + 'px');
     });
 
 });
 
-$('#plus').click(function() {
+$('#plus').click(function () {
     $('#showUpload').removeClass("d-none");
     $('#plus').addClass("d-none");
     $('#minus').removeClass("d-none");
@@ -23,7 +23,7 @@ $('#plus').click(function() {
     $('#minus1').addClass("d-none");
 
 });
-$('#minus').click(function() {
+$('#minus').click(function () {
     $('#showUpload1').addClass("d-none");
     $('#showUpload').addClass("d-none");
     $('#plus').removeClass("d-none");
@@ -33,18 +33,26 @@ $('#minus').click(function() {
 
 
 });
-$('#plus1').click(function() {
+$('#plus1').click(function () {
     $('#showUpload1').removeClass("d-none");
     $('#plus1').addClass("d-none");
     $('#minus1').removeClass("d-none");
     $('#plus').addClass("d-none");
 });
-$('#minus1').click(function() {
+$('#minus1').click(function () {
     $('#showUpload1').addClass("d-none");
     $('#plus1').removeClass("d-none");
     $('#minus1').addClass("d-none");
     $('#plus').addClass("d-none");
 });
 
+$(document).ready(function () {
+    $('input[type="checkbox"]').addClass('toggles').wrap('<label class="switch mr-4"></label>').after('<span class="slider round"></span>');
+    $("#formMessage").hide();
 
+});
 
+$('input[type="checkbox"]').prop("checked", false).change(function () {
+    $("#formMessage").slideToggle(300);
+
+});

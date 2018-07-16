@@ -8,6 +8,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Announce;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,6 +27,19 @@ class SecurityController extends AbstractController
             'last_username' => $helper->getLastUsername(),
             // La derniere erreur de connexion (si il y en a une)
             'error' => $helper->getLastAuthenticationError(),
+        ]);
+    }
+
+    /**
+     * @Route("/profile", name="profile")
+     */
+    public function profile(AuthenticationUtils $helper): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $announces = $em->getRepository(Announce::class)->findBy(['user' => $user ], ['DatePost' => 'DESC ']);
+        return $this->render('user/profile.html.twig',[
+            'announces'=> $announces,
         ]);
     }
 
