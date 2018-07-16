@@ -2,18 +2,11 @@
 
 {% block content %}
     <div class="container pt-5">
-        <div class="row">
-            <div class="col-6 mt-3">
-                <div class="btn btn-primary text-default"><i
-                            class="fas fa-sort"></i> {{ knp_pagination_sortable(announces, 'Trier par prix','Price') }}
-                </div>
-                <div class="btn btn-primary"><i
-                            class="fas fa-sort"></i> {{ knp_pagination_sortable(announces, 'Trier par date','Price') }}
-                </div>
-                {#<div class="btn btn-primary">{{ knp_pagination_sortable(announces, 'Trier par département','Price') }}</div>#}
+            <h5 class="card-title  col-7 mt-5"> Annonces Ulm pendulaire</h5>
 
-            </div>
-            <div class="col-4 mt-3">
+        <hr>
+        <div class="row">
+            <div class="col-8 ml-5 mt-3">
                 {{ form_start(form) }}
                 {{ form_row(form.search) }}
             </div>
@@ -22,6 +15,24 @@
                 {{ form_end(form) }}
             </div>
         </div>
+        <div class="row justify-content-center">
+            <div class="col-2 mt-1">
+                <div class="btn btn-primary btn-sm"><i
+                            class="fas fa-sort"></i> {{ knp_pagination_sortable(announces, 'Trier par prix','Price') }}
+                </div>
+            </div>
+            <div class="col-2 mt-1">
+                <div class="btn btn-primary btn-sm"><i
+                            class="fas fa-sort"></i> {{ knp_pagination_sortable(announces, 'Trier par date','Price') }}
+                </div>
+            </div>
+            <div class="col-3 mt-1">
+                {{ form_start(form,{'attr':{'onChange':'submit()' }}) }}
+                {{ form_row(form2.filter) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
+
         <hr class="mb-4">
         <ul class="cards mt-3">
             {% for announce in announces %}

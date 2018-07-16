@@ -19,42 +19,41 @@ class AnnounceRepository extends ServiceEntityRepository
         parent::__construct($registry, Announce::class);
     }
 
-    public function findAnnouncementsByModel(string $modelName)
+    public function findAnnouncementsByModel($modelName)
     {
         $query = $this->createQueryBuilder('a')
             ->where('a.Model LIKE :nameModel')
-            ->setParameter('nameModel', '%' . $modelName .'%')
+            ->setParameter('nameModel', '%' . $modelName . '%')
             ->getQuery();
 
         return $query->getResult();
     }
 
-    public function findAnnouncementsByPrice(string $priceName)
-    {
-        $query = $this->createQueryBuilder('a')
-            ->where('a.Price')
-            ->orderBy('a.Price', 'ASC')
-            ->getQuery();
-
-        return $query->getResult();
-    }
+//    public function findAnnouncementsByPrice(string $priceName)
+//    {
+//        $query = $this->createQueryBuilder('a')
+//            ->where('a.Price')
+//            ->orderBy('a.Price', 'ASC')
+//            ->getQuery();
+//
+//        return $query->getResult();
+//    }
 
 //    /**
 //     * @return Announce[] Returns an array of Announce objects
 //     */
-    /*
-    public function findByExampleField($value)
+
+    public function findByRegionField(string $region)
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
+            ->join('a.region', 'r')
+            ->where('r.name = :region')
+            ->setParameter(':region', $region)
             ->getQuery()
-            ->getResult()
-        ;
+
+            ->getResult();
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Announce

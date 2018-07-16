@@ -37,6 +37,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce->setNbrHvol(903);
         $announce->setEnabled(1);
         $announce->setUser($this->getReference('john_user'));
+        $announce->setRegion($this->getReference('Auvergne'));
         $manager->persist($announce);
 
         $announce2 = new Announce();
@@ -57,6 +58,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce2->setNbrHvol(903);
         $announce2->setEnabled(1);
         $announce2->setUser($this->getReference('john_user'));
+        $announce2->setRegion($this->getReference('Auvergne'));
         $manager->persist($announce2);
 
         $announce3 = new Announce();
@@ -77,6 +79,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce3->setNbrHvol(903);
         $announce3->setEnabled(1);
         $announce3->setUser($this->getReference('john_user'));
+        $announce3->setRegion($this->getReference('Occitanie'));
 
         $manager->persist($announce3);
 
@@ -98,6 +101,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce4->setNbrHvol(903);
         $announce4->setEnabled(1);
         $announce4->setUser($this->getReference('john_user'));
+        $announce4->setRegion($this->getReference('Auvergne'));
 
         $manager->persist($announce4);
 
@@ -119,6 +123,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce5->setNbrHvol(903);
         $announce5->setEnabled(1);
         $announce5->setUser($this->getReference('john_user'));
+        $announce5->setRegion($this->getReference('Auvergne'));
 
         $manager->persist($announce5);
 
@@ -161,6 +166,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce7->setNbrHvol(903);
         $announce7->setEnabled(1);
         $announce7->setUser($this->getReference('john_user'));
+        $announce7->setRegion($this->getReference('Auvergne'));
 
         $manager->persist($announce7);
 
@@ -182,6 +188,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce8->setNbrHvol(903);
         $announce8->setEnabled(0);
         $announce8->setUser($this->getReference('john_user'));
+        $announce8->setRegion($this->getReference('Auvergne'));
 
         $manager->persist($announce8);
 
@@ -203,6 +210,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce9->setNbrHvol(903);
         $announce9->setEnabled(1);
         $announce9->setUser($this->getReference('john_user'));
+        $announce8->setRegion($this->getReference('Normandie'));
 
         $manager->persist($announce9);
 
@@ -224,6 +232,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce10->setNbrHvol(903);
         $announce10->setEnabled(1);
         $announce10->setUser($this->getReference('john_user'));
+        $announce10->setRegion($this->getReference('Normandie'));
 
         $manager->persist($announce10);
 
