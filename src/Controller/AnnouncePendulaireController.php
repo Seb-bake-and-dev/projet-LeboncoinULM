@@ -26,12 +26,10 @@ class AnnouncePendulaireController extends Controller
     public function index(AnnounceRepository $announceRepository, Request $request): Response
     {
         $form = $this->createForm(SearchType::class);
-
-
         $form->handleRequest($request);
         $form2 = $this->createForm(RegionType::class);
-
         $form2->handleRequest($request);
+
         $em = $this->getDoctrine()->getManager();
 
         $data = $form2->getData();
@@ -43,18 +41,9 @@ class AnnouncePendulaireController extends Controller
             $announces = $em->getRepository(Announce::class)->findBy(['Type' => $pendulaires, 'enabled' => 1], ['DatePost' => 'DESC ']);
         }
 
-        $paginator = $this->get('knp_paginator');
-        $result = $paginator->paginate(
-            $announces,
-            $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 9)
-        );
-
+        $data2 = $form->getData();
+        $modelSearch = $data2['search'];
         if ($form->isSubmitted() && $form->isValid()) {
-            $form = $this->createForm(SearchType::class);
-            $em = $this->getDoctrine()->getManager();
-            $data = $form->getData();
-            $modelSearch = $data['search'];
             $announces = $em->getRepository(Announce::class)->findAnnouncementsByModel($modelSearch);
             $paginator = $this->get('knp_paginator');
             $result = $paginator->paginate(
@@ -66,10 +55,19 @@ class AnnouncePendulaireController extends Controller
             return $this->render('announce/pendulaires/index.html.twig', [
                 'announces' => $result,
                 'modelSearch' => $modelSearch,
+                'region' => $region,
                 'form' => $form->createView(),
                 'form2' => $form2->createView(),
             ]);
         }
+
+
+        $paginator = $this->get('knp_paginator');
+        $result = $paginator->paginate(
+            $announces,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 9));
+
 
         return $this->render(
             'announce/pendulaires/index.html.twig',

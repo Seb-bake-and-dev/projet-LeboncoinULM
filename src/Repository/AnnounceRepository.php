@@ -19,7 +19,7 @@ class AnnounceRepository extends ServiceEntityRepository
         parent::__construct($registry, Announce::class);
     }
 
-    public function findAnnouncementsByModel($modelName)
+    public function findAnnouncementsByModel(string $modelName)
     {
         $query = $this->createQueryBuilder('a')
             ->where('a.Model LIKE :nameModel')
@@ -29,19 +29,19 @@ class AnnounceRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-//    public function findAnnouncementsByPrice(string $priceName)
-//    {
-//        $query = $this->createQueryBuilder('a')
-//            ->where('a.Price')
-//            ->orderBy('a.Price', 'ASC')
-//            ->getQuery();
-//
-//        return $query->getResult();
-//    }
+    public function findAnnouncementsByPrice(string $priceName)
+    {
+        $query = $this->createQueryBuilder('a')
+            ->where('a.Price')
+            ->orderBy('a.Price', 'ASC')
+            ->getQuery();
 
-//    /**
-//     * @return Announce[] Returns an array of Announce objects
-//     */
+        return $query->getResult();
+    }
+
+    /**
+     * @return Announce[] Returns an array of Announce objects
+     */
 
     public function findByRegionField(string $region)
     {
