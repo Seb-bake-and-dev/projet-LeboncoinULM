@@ -34,5 +34,4 @@ class RegionType extends AbstractType
             'data_class' => null,
         ));
     }
-
 }

@@ -38,7 +38,7 @@ class SecurityController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $announces = $em->getRepository(Announce::class)->findBy(['user' => $user ], ['DatePost' => 'DESC ']);
-        return $this->render('user/profile.html.twig',[
+        return $this->render('user/profile.html.twig', [
             'announces'=> $announces,
         ]);
     }

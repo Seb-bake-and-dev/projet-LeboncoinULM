@@ -67,7 +67,7 @@ class AnnounceType extends AbstractType
                 'label' => 'Heures de vols',
                 'required' => false,
             ])
-            ->add('yearUlm',IntegerType::class, [
+            ->add('yearUlm', IntegerType::class, [
                 'label' => 'Année d\'achat',
                 'required' => false,
             ])
