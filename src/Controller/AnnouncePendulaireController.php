@@ -14,12 +14,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/announce")
+ * @Route("/pendulaires")
  */
-class AnnounceController extends Controller
+class AnnouncePendulaireController extends Controller
 {
     /**
-     * @Route("/pendulaires", name="announce_pendulaires", methods="GET|POST")
+     * @Route("/", name="announce_pendulaires", methods="GET|POST")
      */
     public function index(AnnounceRepository $announceRepository, Request $request): Response
     {
@@ -27,13 +27,13 @@ class AnnounceController extends Controller
         $form->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
         $pendulaires = $em->getRepository(TypeUlm::class)->findBy(['Type' => 'Pendulaires']);
-        $announces = $em->getRepository(Announce::class)->findBy(['Type' => $pendulaires], ['DatePost' => 'ASC']);
+        $announces = $em->getRepository(Announce::class)->findBy(['Type' => $pendulaires, 'enabled' => 1], ['DatePost' => 'DESC ']);
 
         $paginator = $this->get('knp_paginator');
         $result = $paginator->paginate(
             $announces,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 5)
+            $request->query->getInt('limit', 9)
         );
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -45,7 +45,8 @@ class AnnounceController extends Controller
             $result = $paginator->paginate(
                 $announces,
                 $request->query->getInt('page', 1),
-                $request->query->getInt('limit', 5));
+                $request->query->getInt('limit', 5)
+            );
 
             return $this->render('announce/pendulaires/index.html.twig', [
                 'announces' => $result,
@@ -73,7 +74,7 @@ class AnnounceController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $announce->setDatePost(NEW \DateTime ('NOW'));
+            $announce->setDatePost(new \DateTime('NOW'));
             $em->persist($announce);
             $em->flush();
 

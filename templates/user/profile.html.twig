@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+{% block content %}
+    <div class="container pt-5">
+        <h5 class="card-title mt-5"> Profile de {{ app.user.username }}</h5>
+        <hr>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active text-dark" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                   aria-controls="home"
+                   aria-selected="true">Toutes vos annonces</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                   aria-controls="profile" aria-selected="false">Vos informations</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <ul class="cards mt-3">
+                    {% for announce in announces %}
+                        <li class="cards_item col-4">
+                            <div class="card">
+                                <div class="card_image">
+                                    <img src="{{ asset('images/products/' ~ announce.picture) }}" class="img-announce">
+                                </div>
+                                <div class="card_content">
+                                    <h5 class="card-title"> {{ announce.model }} - {{ announce.price }}€</h5>
+                                    <a href="{{ path('announce_show', {'id': announce.id}) }}" class="card_button">Voir
+                                        l'annonce</a>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="tab-pane fade text-center mt-5" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <p><i class="fas fa-user-circle"></i> <strong>Pseudo:</strong> {{ app.user.username }}</p>
+                <p><i class="far fa-user-circle"></i> <strong>Nom:</strong> {{ app.user.fullname }}</p>
+                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> {{ app.user.email }}</p>
+                <p><i class="fas fa-phone"></i> <strong>Téléphone:</strong> {{ app.user.phone }}</p>
+                <a href="{{ path('announce_pendulaires') }}" class="btn btn-primary">Editer votre compte</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

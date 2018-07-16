@@ -7,10 +7,17 @@
         {{ form_start(form) }}
         <div class="row">
             <div class="col-12">{{ form_row(form.Type) }}</div>
-            <div class="col-6">{{ form_row(form.state) }}</div>
-            <div class="col-6">{{ form_row(form.Price) }}</div>
             <div class="col-6">{{ form_row(form.Marque) }}</div>
             <div class="col-6">{{ form_row(form.Model) }}</div>
+            <div class="col-6">{{ form_row(form.state) }}</div>
+            <div class="col-6">{{ form_row(form.Price) }}</div>
+            <div class="col-8">{{ form_row(form.vitesseMax) }}</div>
+            <div class="col-3 mt-3 toggle">
+                {{ form_row(form.parachute) }}
+                {{ form_row(form.transponder) }}
+            </div>
+            <div class="col-6 mt-2">{{ form_row(form.nbrHvol) }}</div>
+            <div class="col-6 mt-2">{{ form_row(form.yearUlm) }}</div>
             <div class="col-11">
                 <div class="pb-2">Ajouter une image</div>
                 {{ form_row(form.imageFile) }}
@@ -35,6 +42,7 @@
             </div>
             <div class="col-12 mt-3">{{ form_row(form.Description) }}</div>
         </div>
+
         {{ form_end(form) }}
         <a href="{{ path('announce_pendulaires') }}">back to list</a>
     </div>

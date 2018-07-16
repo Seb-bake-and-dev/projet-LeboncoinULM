@@ -35,4 +35,4 @@ security:
         # Les regles de securité
         # Là dans ce cas seul les utilisateurs ayant le rôle ROLE_ADMIN
         # peuvent acceder à toutes les pages commençant par /admin
-        - { path: '^/announce', roles: ROLE_ADMIN }
+        - { path: '/pendulaire/new', roles: ROLE_ADMIN }

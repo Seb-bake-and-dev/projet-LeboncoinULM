@@ -30,6 +30,12 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce->setPicture('fixture1.jpg');
         $announce->setPicture2('fixture8.jpg');
         $announce->setPicture3('fixture9.jpg');
+        $announce->setVitesseMax(1);
+        $announce->setParachute(1);
+        $announce->setTransponder(1);
+        $announce->setYearUlm(1991);
+        $announce->setNbrHvol(903);
+        $announce->setEnabled(1);
         $announce->setUser($this->getReference('john_user'));
         $manager->persist($announce);
 
@@ -44,6 +50,12 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce2->setPicture('fixture2.jpg');
         $announce2->setPicture2('fixture8.jpg');
         $announce2->setPicture3('fixture9.jpg');
+        $announce2->setVitesseMax(1);
+        $announce2->setParachute(1);
+        $announce2->setTransponder(1);
+        $announce2->setYearUlm(1991);
+        $announce2->setNbrHvol(903);
+        $announce2->setEnabled(1);
         $announce2->setUser($this->getReference('john_user'));
         $manager->persist($announce2);
 
@@ -58,6 +70,12 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce3->setPicture('fixture3.jpg');
         $announce3->setPicture2('fixture8.jpg');
         $announce3->setPicture3('fixture9.jpg');
+        $announce3->setVitesseMax(1);
+        $announce3->setParachute(1);
+        $announce3->setTransponder(1);
+        $announce3->setYearUlm(1991);
+        $announce3->setNbrHvol(903);
+        $announce3->setEnabled(1);
         $announce3->setUser($this->getReference('john_user'));
 
         $manager->persist($announce3);
@@ -73,6 +91,12 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce4->setPicture('fixture4.jpg');
         $announce4->setPicture2('fixture8.jpg');
         $announce4->setPicture3('fixture9.jpg');
+        $announce4->setVitesseMax(1);
+        $announce4->setParachute(1);
+        $announce4->setTransponder(1);
+        $announce4->setYearUlm(1991);
+        $announce4->setNbrHvol(903);
+        $announce4->setEnabled(1);
         $announce4->setUser($this->getReference('john_user'));
 
         $manager->persist($announce4);
@@ -88,6 +112,12 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce5->setPicture('fixture5.jpg');
         $announce5->setPicture2('fixture8.jpg');
         $announce5->setPicture3('fixture9.jpg');
+        $announce5->setVitesseMax(1);
+        $announce5->setParachute(1);
+        $announce5->setTransponder(1);
+        $announce5->setYearUlm(1991);
+        $announce5->setNbrHvol(903);
+        $announce5->setEnabled(1);
         $announce5->setUser($this->getReference('john_user'));
 
         $manager->persist($announce5);
@@ -103,6 +133,12 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce6->setPicture('fixture6.jpg');
         $announce6->setPicture2('fixture8.jpg');
         $announce6->setPicture3('fixture9.jpg');
+        $announce6->setVitesseMax(1);
+        $announce6->setParachute(1);
+        $announce6->setTransponder(1);
+        $announce6->setYearUlm(1991);
+        $announce6->setNbrHvol(903);
+        $announce6->setEnabled(1);
         $announce6->setUser($this->getReference('john_user'));
 
         $manager->persist($announce6);
@@ -118,6 +154,12 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce7->setPicture('fixture7.jpg');
         $announce7->setPicture2('fixture8.jpg');
         $announce7->setPicture3('fixture9.jpg');
+        $announce7->setVitesseMax(1);
+        $announce7->setParachute(1);
+        $announce7->setTransponder(1);
+        $announce7->setYearUlm(1991);
+        $announce7->setNbrHvol(903);
+        $announce7->setEnabled(1);
         $announce7->setUser($this->getReference('john_user'));
 
         $manager->persist($announce7);
@@ -128,11 +170,17 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce8->setMarque('Air Creation');
         $announce8->setModel('Tanarg');
         $announce8->setPrice('45000');
-        $announce8->setDatePost(new \DateTime('16-12-2018'));
+        $announce8->setDatePost(new \DateTime('16-12-2014'));
         $announce8->setState($this->getReference('Good'));
         $announce8->setPicture('fixture8.jpg');
         $announce8->setPicture2('fixture8.jpg');
         $announce8->setPicture3('fixture9.jpg');
+        $announce8->setVitesseMax(1);
+        $announce8->setParachute(1);
+        $announce8->setTransponder(1);
+        $announce8->setYearUlm(1991);
+        $announce8->setNbrHvol(903);
+        $announce8->setEnabled(0);
         $announce8->setUser($this->getReference('john_user'));
 
         $manager->persist($announce8);
@@ -148,6 +196,12 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce9->setPicture('fixture9.jpg');
         $announce9->setPicture2('fixture8.jpg');
         $announce9->setPicture3('fixture9.jpg');
+        $announce9->setVitesseMax(1);
+        $announce9->setParachute(1);
+        $announce9->setTransponder(1);
+        $announce9->setYearUlm(1991);
+        $announce9->setNbrHvol(903);
+        $announce9->setEnabled(1);
         $announce9->setUser($this->getReference('john_user'));
 
         $manager->persist($announce9);
@@ -158,11 +212,17 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce10->setMarque('Air Creation');
         $announce10->setModel('Tanarg');
         $announce10->setPrice('10000');
-        $announce10->setDatePost(new \DateTime('06-01-2018'));
+        $announce10->setDatePost(new \DateTime('06-08-2018'));
         $announce10->setState($this->getReference('Good'));
         $announce10->setPicture('fixture10.jpg');
         $announce10->setPicture2('fixture8.jpg');
         $announce10->setPicture3('fixture9.jpg');
+        $announce10->setVitesseMax(1);
+        $announce10->setParachute(1);
+        $announce10->setTransponder(1);
+        $announce10->setYearUlm(1991);
+        $announce10->setNbrHvol(903);
+        $announce10->setEnabled(1);
         $announce10->setUser($this->getReference('john_user'));
 
         $manager->persist($announce10);
