@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+{% block content %}
+    <div class="container pt-5">
+        <div class="row mx-auto mt-5">
+            <div class="col-6">
+                <div class="mt-4">
+                    <h5 class="card-title">Formulaire de contact</h5>
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <a href="{{ path('announce_show', {'id': announce.id}) }}" class="btn btn-dark"><i class="fas fa-chevron-left"></i> Retour</a>
+
+                    <button type="submit" class="btn btn-primary">Envoyer le message !</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Résumé de l'annonce</h5>
+                        <strong>{{ announce.marque }} - {{ announce.model }} - {{ announce.price }} €</strong>
+                        <div class="card-text mt-3">{{ announce.description }}</div>
+                        <img class="img-responsive w-100 text-center mt-2"
+                             src="{{ asset('images/products/' ~ announce.picture) }}"
+                             alt="{{ announce.picture }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

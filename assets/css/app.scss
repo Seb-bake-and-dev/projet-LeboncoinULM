@@ -1,6 +1,7 @@
-@import "~bootswatch/dist/flatly/variables";
+@import "~bootswatch/dist/lux/variables";
 @import "~bootstrap/scss/bootstrap";
-@import "~bootswatch/dist/flatly/bootswatch";
+@import "~bootswatch/dist/lux/bootswatch";
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 @import "variables";
 @import "template_annouce";
 @import "home";
@@ -11,6 +12,7 @@ body{
   background-image: url("https://image.noelshack.com/fichiers/2018/28/5/1531492749-image-accueil5.jpg");
   background-attachment: fixed;
   background-repeat: repeat-x;
+  font-family: Roboto;
 }
 .container{
   justify-content: center;
@@ -36,21 +38,24 @@ a{
   }
 }
 
-.page-link{
-  background-color: #1b1e21;
-}
-li.page-item.disabled {
-  color: #1a252f;
-}
-
 .card_button {
-  color: #18BC9C;
-  text-decoration: none;
+  color: #000;
+  font-weight: bold;
 }
 
 footer{
-  background: #1a252f;
+  background: #000;
+  -webkit-box-shadow: inset 0px -6px 5px #000;
+  -moz-box-shadow: inset 0px -6px 5px #000;
+  box-shadow: inset 0px -6px 5px #000;
+}
 
+p{
+  color: #000;
+}
+
+.card{
+  background: #f0f0f0;
 }
 
 
