@@ -69,6 +69,27 @@ class Announce
      * @var string
      */
     private $picture;
+
+    /**
+     *
+     * @Vich\UploadableField(mapping="product_image", fileNameProperty="picture2", size="imageSize")
+     * @Assert\File(
+     * maxSize="2000k",
+     * maxSizeMessage="Le fichier excède 2000Ko.",
+     * mimeTypes={"image/png", "image/jpeg", "image/jpg", "image/svg+xml", "image/gif"},
+     * mimeTypesMessage= "formats autorisés: png, jpeg, jpg, svg, gif"
+     * )
+     *
+     * @var File
+     */
+    private $imageFile2;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable = true)
+     *
+     * @var string
+     */
+    private $picture2;
     /**
      * @ORM\Column(type="datetime", nullable = true)
      *
@@ -90,6 +111,11 @@ class Announce
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="Announce")
      */
     private $announce;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="announces")
+     */
+    private $user;
 
     public function __construct()
     {
@@ -257,6 +283,30 @@ class Announce
                 $announce->setAnnounce(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getPicture2(): ?string
+    {
+        return $this->picture2;
+    }
+
+    public function setPicture2(?string $picture2): self
+    {
+        $this->picture2 = $picture2;
 
         return $this;
     }

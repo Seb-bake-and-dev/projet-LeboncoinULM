@@ -27,7 +27,7 @@ class AnnounceController extends Controller
         $form->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
         $pendulaires = $em->getRepository(TypeUlm::class)->findBy(['Type' => 'Pendulaires']);
-        $announces = $em->getRepository(Announce::class)->findBy(['Type' => $pendulaires]);
+        $announces = $em->getRepository(Announce::class)->findBy(['Type' => $pendulaires], ['DatePost' => 'ASC']);
 
         $paginator = $this->get('knp_paginator');
         $result = $paginator->paginate(
