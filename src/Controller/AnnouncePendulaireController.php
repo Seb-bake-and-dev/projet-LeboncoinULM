@@ -45,33 +45,21 @@ class AnnouncePendulaireController extends Controller
         $modelSearch = $data2['search'];
         if ($form->isSubmitted() && $form->isValid()) {
             $announces = $em->getRepository(Announce::class)->findAnnouncementsByModel($modelSearch);
-            $paginator = $this->get('knp_paginator');
-            $result = $paginator->paginate(
-                $announces,
-                $request->query->getInt('page', 1),
-                $request->query->getInt('limit', 5)
-            );
-
-            return $this->render('announce/pendulaires/index.html.twig', [
-                'announces' => $result,
-                'modelSearch' => $modelSearch,
-                'region' => $region,
-                'form' => $form->createView(),
-                'form2' => $form2->createView(),
-            ]);
         }
-
 
         $paginator = $this->get('knp_paginator');
         $result = $paginator->paginate(
             $announces,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 9));
-
+            $request->query->getInt('limit', 9)
+        );
 
         return $this->render(
             'announce/pendulaires/index.html.twig',
-            ['announces' => $result,
+            [
+                'announces' => $result,
+                'modelSearch' => $modelSearch,
+                'region' => $region,
                 'form' => $form->createView(),
                 'form2' => $form2->createView(),
             ]
