@@ -91,6 +91,11 @@ class Announce
      */
     private $announce;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="announces")
+     */
+    private $user;
+
     public function __construct()
     {
         $this->announce = new ArrayCollection();
@@ -257,6 +262,18 @@ class Announce
                 $announce->setAnnounce(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

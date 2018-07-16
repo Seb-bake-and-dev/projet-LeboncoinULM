@@ -1,45 +1,48 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <div class="container pt-5">
-        <div class="row">
-            <div class="col-6 mt-1">
-                <div class="btn btn-primary text-default"><i class="fas fa-sort"></i> {{ knp_pagination_sortable(announces, 'Trier par prix','Price') }}</div>
-                <div class="btn btn-primary"><i class="fas fa-sort"></i> {{ knp_pagination_sortable(announces, 'Trier par date','Price') }}</div>
-                <div class="btn btn-primary">{{ knp_pagination_sortable(announces, 'Trier par département','Price') }}</div>
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-6 mt-1">
+            <div class="btn btn-primary text-default"><i
+                        class="fas fa-sort"></i> {{ knp_pagination_sortable(announces, 'Trier par prix','Price') }}
+            </div>
+            <div class="btn btn-primary"><i
+                        class="fas fa-sort"></i> {{ knp_pagination_sortable(announces, 'Trier par date','Price') }}
+            </div>
+            <div class="btn btn-primary">{{ knp_pagination_sortable(announces, 'Trier par département','Price') }}</div>
 
-            </div>
-            <div class="col-4">
-                {{ form_start(form) }}
-                {{ form_row(form.search) }}
-            </div>
-            <div class="col-2">
-                {{ form_row(form.Rechercher) }}
-                {{ form_end(form) }}
-            </div>
         </div>
-        <hr class="mb-4">
-        <ul class="cards mt-3">
-            {% for announce in announces %}
-                <li class="cards_item ">
-                    <div class="card">
-                        <div class="card_image">
-                            <img src="{{ asset('images/products/' ~ announce.picture) }}" class=" img-announce">
-                        </div>
-                        <div class="card_content">
-                            <h2 class="card_heading">{{ announce.model }}</h2>
-                            <p>{{ announce.price }} € - {{ announce.DatePost.date|date("m/d/Y") }}</p>
-                            <a href="{{ path('announce_show', {'id': announce.id}) }}" class="card_button">Voir
-                                l'annonce</a>
-                        </div>
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
-        <div class="navigation d-flex justify-content-center">
-            {{ knp_pagination_render(announces) }}
+        <div class="col-4">
+            {{ form_start(form) }}
+            {{ form_row(form.search) }}
         </div>
-
+        <div class="col-2">
+            {{ form_row(form.Rechercher) }}
+            {{ form_end(form) }}
+        </div>
     </div>
-{% endblock %}
+    <hr class="mb-4">
+    <ul class="cards mt-3">
+        {% for announce in announces %}
+            <li class="cards_item ">
+                <div class="card">
+                    <div class="card_image">
+                        <img src="{{ asset('images/products/' ~ announce.picture) }}" class=" img-announce">
+                    </div>
+                    <div class="card_content">
+                        <h2 class="card_heading">{{ announce.model }}</h2>
+                        <p>{{ announce.price }} € - {{ announce.DatePost.date|date("d/m/Y") }}</p>
+                        <a href="{{ path('announce_show', {'id': announce.id}) }}" class="card_button">Voir
+                            l'annonce</a>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="navigation d-flex justify-content-center">
+        {{ knp_pagination_render(announces) }}
+    </div>
+
+    {% endblock %}
 
