@@ -13,7 +13,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Repository\AnnounceRepository")
  * @Vich\Uploadable
  */
-
 class Announce
 {
     /**
@@ -90,6 +89,45 @@ class Announce
      * @var string
      */
     private $picture2;
+
+    /**
+     *
+     * @Vich\UploadableField(mapping="product_image", fileNameProperty="picture3", size="imageSize")
+     * @Assert\File(
+     * maxSize="2000k",
+     * maxSizeMessage="Le fichier excède 2000Ko.",
+     * mimeTypes={"image/png", "image/jpeg", "image/jpg", "image/svg+xml", "image/gif"},
+     * mimeTypesMessage= "formats autorisés: png, jpeg, jpg, svg, gif"
+     * )
+     *
+     * @var File
+     */
+    private $imageFile3;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable = true)
+     *
+     * @var string
+     */
+    private $picture3;
+
+    /**
+     * @return string
+     */
+    public function getPicture3(): string
+    {
+        return $this->picture3;
+    }
+
+    /**
+     * @param string $picture3
+     * @return Announce
+     */
+    public function setPicture3(string $picture3): Announce
+    {
+        $this->picture3 = $picture3;
+        return $this;
+    }
     /**
      * @ORM\Column(type="datetime", nullable = true)
      *
@@ -134,22 +172,64 @@ class Announce
             $this->updatedAt = new \DateTimeImmutable();
         }
     }
+
     public function getImageFile(): ?File
     {
         return $this->imageFile;
     }
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     */
+    public function setImageFile2(?File $image = null)
+    {
+        $this->imageFile2 = $image;
+        if (null !== $image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile2(): ?File
+    {
+        return $this->imageFile2;
+    }
+
     public function setPicture($imageName)
     {
         $this->picture = $imageName;
     }
+
     public function getPicture()
     {
         return $this->picture;
     }
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     */
+    public function setImageFile3(?File $image = null)
+    {
+        $this->imageFile3 = $image;
+        if (null !== $image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile3(): ?File
+    {
+        return $this->imageFile3;
+    }
+
+
     public function setImageSize(int $imageSize)
     {
         $this->imageSize = $imageSize;
     }
+
     public function getImageSize(): ?int
     {
         return $this->imageSize;
