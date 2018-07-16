@@ -35,6 +35,14 @@ class AnnounceType extends AbstractType
                 'label' => 'Ajouter une image',
                 'required' => false,
             ])
+            ->add('imageFile2', FileType::class, [
+                'label' => 'Ajouter une image',
+                'required' => false,
+            ])
+            ->add('imageFile3', FileType::class, [
+                'label' => 'Ajouter une image',
+                'required' => false,
+            ])
             ->add('Marque', TextType::class, [
                 'label' => 'Marque de l\'ulm',
                 'required' => true,
