@@ -17,12 +17,12 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-2 mt-1">
-                <div class="btn btn-primary btn-sm"><i
+                <div class="btn btn-primary pr-5 pl-5 btn-sm"><i
                             class="fas fa-sort"></i> {{ knp_pagination_sortable(announces, 'Trier par prix','Price') }}
                 </div>
             </div>
             <div class="col-2 mt-1">
-                <div class="btn btn-primary btn-sm"><i
+                <div class="btn btn-primary pr-5 pl-5 btn-sm"><i
                             class="fas fa-sort"></i> {{ knp_pagination_sortable(announces, 'Trier par date','Price') }}
                 </div>
             </div>
@@ -45,8 +45,11 @@
                             <h5 class="card-title"> {{ announce.model }} - {{ announce.price }}€</h5>
                             <h6 class="card-title">{{ announce.city }}</h6>
                                 <p>Posté le: {{ announce.DatePost.date|date("d/m/Y") }}</p>
-                            <a href="{{ path('announce_show', {'id': announce.id}) }}" class="card_button">Voir
-                                l'annonce</a>
+                            <div class="card-footer w-100 text-center">
+                                <a href="{{ path('announce_show', {'id': announce.id}) }}"
+                                   class="text-dark col-2 font-weight-bold" title="Voir">
+                                    <i class="fas fa-eye text-warning pr-1 mr-1"></i>Voir l'annonce</a>
+                            </div>
                         </div>
                     </div>
                 </li>

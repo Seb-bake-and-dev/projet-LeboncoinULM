@@ -1,8 +1,7 @@
 @import "~bootswatch/dist/lux/variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~bootswatch/dist/lux/bootswatch";
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
-@import url('https://fonts.googleapis.com/css?family=Anton');
+@import url('https://fonts.googleapis.com/css?family=Anton|Arimo|PT+Sans|Roboto|Signika|Source+Sans+Pro');
 @import "variables";
 @import "template_annouce";
 @import "home";
@@ -15,7 +14,7 @@ body{
   background-image: url("https://image.noelshack.com/fichiers/2018/28/5/1531492749-image-accueil5.jpg");
   background-attachment: fixed;
   background-repeat: repeat-x;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
 }
 .container{
   justify-content: center;
@@ -91,3 +90,14 @@ p{
 .card-footer{
   border: 1px solid #EEE;
 }
+
+select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -appearance: none;
+}
+
+.custom-select{
+  height: 40px;
+}
+

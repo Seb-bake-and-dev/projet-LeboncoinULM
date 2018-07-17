@@ -32,6 +32,8 @@ class AnnounceType extends AbstractType
             ->add('Type', EntityType::class, [
                 'label' => 'Type d\'ulm',
                 'class' => TypeUlm::class,
+                'attr' => ['class' => 'custom-select'],
+
             ])
             ->add('region', EntityType::class, array(
                 'class' => Region::class,
@@ -39,10 +41,13 @@ class AnnounceType extends AbstractType
                 'label' => 'Région',
                 'required' => false,
                 'placeholder' => 'Sélectionner la région ou se trouve l\'ulm',
+                'attr' => ['class' => 'custom-select'],
+
             ))
             ->add('state', EntityType::class, [
                 'label' => 'Etat de l\'ulm',
                 'class' => state::class,
+                'attr' => ['class' => 'custom-select'],
             ])
             ->add('Price', MoneyType::class, [
                 'label' => 'Prix de vente',
