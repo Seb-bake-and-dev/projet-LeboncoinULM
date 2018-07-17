@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Announce;
+use App\Entity\Region;
 use App\Entity\State;
 use App\Entity\TypeUlm;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -32,6 +33,13 @@ class AnnounceType extends AbstractType
                 'label' => 'Type d\'ulm',
                 'class' => TypeUlm::class,
             ])
+            ->add('region', EntityType::class, array(
+                'class' => Region::class,
+                'choice_label' => 'name',
+                'label' => 'Région',
+                'required' => false,
+                'placeholder' => 'Sélectionner la région ou se trouve l\'ulm',
+            ))
             ->add('state', EntityType::class, [
                 'label' => 'Etat de l\'ulm',
                 'class' => state::class,
@@ -57,6 +65,10 @@ class AnnounceType extends AbstractType
             ])
             ->add('Model', TextType::class, [
                 'label' => 'Modèle de l\'ulm',
+                'required' => false,
+            ])
+            ->add('city', TextType::class, [
+                'label' => 'Ville',
                 'required' => false,
             ])
             ->add('vitesseMax', IntegerType::class, [

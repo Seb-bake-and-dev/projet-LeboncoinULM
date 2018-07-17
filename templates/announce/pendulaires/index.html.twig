@@ -2,17 +2,17 @@
 
 {% block content %}
     <div class="container pt-5">
-            <h5 class="card-title  col-7 mt-5"> Annonces Ulm pendulaire</h5>
+        <h5 class="card-title  col-7 mt-5"> Annonces Ulm pendulaire</h5>
 
         <hr>
         <div class="row">
             <div class="col-8 ml-5 mt-3">
-                {{ form_start(form) }}
-                {{ form_row(form.search) }}
+                {{ form_start(formSearch) }}
+                {{ form_row(formSearch.search) }}
             </div>
             <div class="col-2 mt-3">
-                {{ form_row(form.Rechercher) }}
-                {{ form_end(form) }}
+                {{ form_row(formSearch.Rechercher) }}
+                {{ form_end(formSearch) }}
             </div>
         </div>
         <div class="row justify-content-center">
@@ -27,9 +27,9 @@
                 </div>
             </div>
             <div class="col-3 mt-1">
-                {{ form_start(form2,{'attr':{'onChange':'submit()' }}) }}
-                {{ form_row(form2.filter) }}
-                {{ form_end(form2) }}
+                {{ form_start(formRegion,{'attr':{'onChange':'submit()' }}) }}
+                {{ form_row(formRegion.filter) }}
+                {{ form_end(formRegion) }}
             </div>
         </div>
 
@@ -43,7 +43,8 @@
                         </div>
                         <div class="card_content">
                             <h5 class="card-title"> {{ announce.model }} - {{ announce.price }}€</h5>
-                            <p>Posté le: {{ announce.DatePost.date|date("d/m/Y") }}</p>
+                            <p>Ville: {{ announce.city }}</p>
+                                <p>Posté le: {{ announce.DatePost.date|date("d/m/Y") }}</p>
                             <a href="{{ path('announce_show', {'id': announce.id}) }}" class="card_button">Voir
                                 l'annonce</a>
                         </div>
