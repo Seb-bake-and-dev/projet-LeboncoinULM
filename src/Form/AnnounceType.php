@@ -45,19 +45,23 @@ class AnnounceType extends AbstractType
                 'class' => state::class,
             ])
             ->add('Price', MoneyType::class, [
-                'label' => 'Prix de vente'
+                'label' => 'Prix de vente',
             ])
             ->add('imageFile', FileType::class, [
-                'label' => 'Ajouter une image',
                 'required' => false,
+                'attr' => ['name' => 'chooseFile', 'id' => 'chooseFile', 'type' => 'file']
             ])
             ->add('imageFile2', FileType::class, [
                 'label' => 'Ajouter une seconde image',
                 'required' => false,
+                'attr' => ['name' => 'chooseFile2', 'id' => 'chooseFile2', 'type' => 'file']
+
             ])
             ->add('imageFile3', FileType::class, [
                 'label' => 'Ajouter une troisième image',
                 'required' => false,
+                'attr' => ['name' => 'chooseFile3', 'id' => 'chooseFile3', 'type' => 'file']
+
             ])
             ->add('Marque', TextType::class, [
                 'label' => 'Marque de l\'ulm',
@@ -72,7 +76,7 @@ class AnnounceType extends AbstractType
                 'required' => false,
             ])
             ->add('vitesseMax', IntegerType::class, [
-                'label' => 'Vitesse Maxi de l\'ulm',
+                'label' => 'Vitesse Maxi de l\'ulm en km/h',
                 'required' => false,
             ])
             ->add('nbrHvol', IntegerType::class, [
@@ -80,7 +84,7 @@ class AnnounceType extends AbstractType
                 'required' => false,
             ])
             ->add('yearUlm', IntegerType::class, [
-                'label' => 'Année d\'achat',
+                'label' => 'Année de construction',
                 'required' => false,
             ])
             ->add('parachute', CheckboxType::class, [

@@ -2,12 +2,14 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~bootswatch/dist/lux/bootswatch";
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+@import url('https://fonts.googleapis.com/css?family=Anton');
 @import "variables";
 @import "template_annouce";
 @import "home";
 @import "button";
 @import "parallax";
 @import "caroussel";
+@import "upload";
 
 body{
   background-image: url("https://image.noelshack.com/fichiers/2018/28/5/1531492749-image-accueil5.jpg");
@@ -65,4 +67,27 @@ p{
   background: #f0f0f0;
 }
 
+.greyscale{
+  -webkit-filter: grayscale(90%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(90%);
 
+}
+
+.text-archive{
+  top:110px;
+  width: 100%;
+
+  p{
+    color: white;
+    font-size: 3.2em;
+    opacity: 0.7;
+    font-family: 'Anton', sans-serif;
+  }
+}
+.icon-profile{
+  margin-top: 1px;
+}
+
+.card-footer{
+  border: 1px solid #EEE;
+}

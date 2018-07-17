@@ -51,22 +51,31 @@
         <p><strong> {{ announce.state.state }}</strong> / Post|é le: {{ announce.DatePost.date|date("m/d/Y") }};</p>
         <p>
             <strong> Parachute: </strong>{% if announce.parachute == 1 %} Oui {% else %} Non {% endif %}
-            <strong> | Transpondeur: </strong>{% if announce.transponder == 1 %} Oui {% else %} Non {% endif %}
-            <strong> | Heures de
+            <strong class="ml-3"> |
+                Transpondeur: </strong>{% if announce.transponder == 1 %} Oui {% else %} Non {% endif %}
+            <strong class="ml-3"> | Heures de
                 vols: </strong>{% if announce.nbrHvol is defined %} {{ announce.nbrHvol }} heures{% else %} Non renseigées. {% endif %}
-            <strong> | Année
-                d'achat: </strong>{% if announce.yearUlm is defined %} {{ announce.yearUlm }} {% else %} Non renseigné. {% endif %}
+            <strong class="ml-3"> | Année
+                de construction: </strong>{% if announce.yearUlm is defined %} {{ announce.yearUlm }} {% else %} Non renseigné. {% endif %}
+            <strong class="ml-3">| Vitesse maxi: </strong>{% if announce.vitesseMax %} {{ announce.vitesseMax }} km/h {% else %} Non renseignées. {% endif %}
+
         </p>
         <p class="mb-5 text-justify"><strong>Description:</strong> {{ announce.description|nl2br }}</p>
         <div class="pb-5">
             <a href="{{ path('announce_pendulaires') }}" class="btn btn-dark float-left"><i
-                        class="fas fa-chevron-left"></i> Retour</a>
-            <a href="{{ path('announce_pendulaires') }}" class="btn btn-primary float-right ml-2"><i
-                        class="far fa-heart"></i> Mettre en
-                favoris</a>
+                        class="fas fa-chevron-left"></i> Retour aux annonces</a>
+            {% if app.user is not null %}
             <a href="{{ path('contact', {'id': announce.id}) }}" class="btn btn-primary float-right"><i
                         class="far fa-envelope"></i>
                 Contacter le vendeur</a>
+                <a href="{{ path('announce_pendulaires') }}" class="btn btn-primary float-right ml-2"><i
+                            class="far fa-heart"></i> Mettre en
+                    favoris</a>
+            {% else %}
+            <a href="{{ path('security_login') }}" class="btn btn-primary float-right">
+                <i class="far fa-address-card"></i>
+                Connectez vous pour contacter le vendeur</a>
+            {% endif %}
 
         </div>
     </div>
