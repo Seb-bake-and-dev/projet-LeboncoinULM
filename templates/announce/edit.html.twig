@@ -1,13 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Announce{% endblock %}
-
-{% block body %}
-    <h1>Edit Announce</h1>
-
-    {{ include('announce/_form.html.twig', {'button_label': 'Update'}) }}
-
-    {#<a href="{{ path('announce_index') }}">back to list</a>#}
-
-    {{ include('announce/_delete_form.html.twig') }}
+{% block content %}
+    <div class="container pt-5">
+        <h5 class="card-title mt-5">Editer votre annonce</h5>
+        <hr>
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-12">{{ form_row(form.Type) }}</div>
+            <div class="col-6">{{ form_row(form.region) }}</div>
+            <div class="col-6">{{ form_row(form.city) }}</div>
+            <div class="col-6">{{ form_row(form.Marque) }}</div>
+            <div class="col-6">{{ form_row(form.Model) }}</div>
+            <div class="col-6">{{ form_row(form.state) }}</div>
+            <div class="col-6">{{ form_row(form.Price) }}</div>
+            <div class="col-8">{{ form_row(form.vitesseMax) }}</div>
+            <div class="col-3 mt-3 toggle">
+                {{ form_row(form.parachute) }}
+                {{ form_row(form.transponder) }}
+            </div>
+            <div class="col-6 mt-2">{{ form_row(form.nbrHvol) }}</div>
+            <div class="col-6 mt-2">{{ form_row(form.yearUlm) }}</div>
+            <div class="col-11">
+                <div class="pb-2">Ajouter une image</div>
+                {{ form_row(form.imageFile) }}
+            </div>
+            <div class="col-1 pt-3 plus" id="plus">
+                <i class="fas fa-plus"></i>
+            </div>
+            <div class="col-1 pt-3 plus d-none" id="minus">
+                <i class="fas fa-minus"></i>
+            </div>
+            <div class="col-11 d-none mt-3 d-none" id="showUpload">
+                {{ form_row(form.imageFile2) }}
+            </div>
+            <div class="col-1 pt-1 plus d-none" id="plus1">
+                <i class="fas fa-plus"></i>
+            </div>
+            <div class="col-1 pt-1 plus d-none" id="minus1">
+                <i class="fas fa-minus"></i>
+            </div>
+            <div class="col-11 d-none mt-3 d-none" id="showUpload1">
+                {{ form_row(form.imageFile3) }}
+            </div>
+            <div class="col-12 mt-3">{{ form_row(form.Description) }}</div>
+        </div>
+        {{ form_end(form) }}
+        <div class="row mx-auto">
+            <a href="{{ path('announce_pendulaires') }}" class="btn btn-dark float-left"><i
+                        class="fas fa-chevron-left"></i> Retour</a>
+        </div>
+    </div>
 {% endblock %}

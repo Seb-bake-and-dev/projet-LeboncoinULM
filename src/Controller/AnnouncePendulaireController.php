@@ -16,34 +16,33 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/pendulaires")
+ * @Route("/announces")
  */
 class AnnouncePendulaireController extends Controller
 {
     /**
-     * @Route("/", name="announce_pendulaires", methods="GET|POST")
+     * @Route("/pendulaires", name="announce_pendulaires", methods="GET|POST")
      */
     public function index(AnnounceRepository $announceRepository, Request $request): Response
     {
-        $form = $this->createForm(SearchType::class);
-        $form->handleRequest($request);
-        $form2 = $this->createForm(RegionType::class);
-        $form2->handleRequest($request);
-
+        $formSearch = $this->createForm(SearchType::class);
+        $formSearch->handleRequest($request);
+        $formRegion = $this->createForm(RegionType::class);
+        $formRegion->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
 
-        $data = $form2->getData();
-        $region = $data['filter'];
-        if ($form2->isSubmitted() && $region != null) {
+        $dataRegion = $formRegion->getData();
+        $region = $dataRegion['filter'];
+        if ($formRegion->isSubmitted() && $region != null) {
             $announces = $em->getRepository(Announce::class)->findByRegionField($region->getName());
         } else {
             $pendulaires = $em->getRepository(TypeUlm::class)->findBy(['Type' => 'Pendulaires']);
             $announces = $em->getRepository(Announce::class)->findBy(['Type' => $pendulaires, 'enabled' => 1], ['DatePost' => 'DESC ']);
         }
 
-        $data2 = $form->getData();
-        $modelSearch = $data2['search'];
-        if ($form->isSubmitted() && $form->isValid()) {
+        $dataSearch = $formSearch->getData();
+        $modelSearch = $dataSearch['search'];
+        if ($formSearch->isSubmitted() && $formSearch->isValid()) {
             $announces = $em->getRepository(Announce::class)->findAnnouncementsByModel($modelSearch);
         }
 
@@ -60,8 +59,8 @@ class AnnouncePendulaireController extends Controller
                 'announces' => $result,
                 'modelSearch' => $modelSearch,
                 'region' => $region,
-                'form' => $form->createView(),
-                'form2' => $form2->createView(),
+                'formSearch' => $formSearch->createView(),
+                'formRegion' => $formRegion->createView(),
             ]
         );
     }

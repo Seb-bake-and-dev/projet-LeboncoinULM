@@ -25,8 +25,15 @@
                                 </div>
                                 <div class="card_content">
                                     <h5 class="card-title"> {{ announce.model }} - {{ announce.price }}€</h5>
-                                    <a href="{{ path('announce_show', {'id': announce.id}) }}" class="card_button">Voir
+                                    <a href="{{ path('announce_show', {'id': announce.id}) }}" class="card_button mb-2">Voir
                                         l'annonce</a>
+                                    <div class="row ml-1"><i class="fas fa-edit text-success mr-1"></i>
+                                    <a href="{{ path('announce_edit', {'id': announce.id}) }}" class="card_button">Editer
+                                       </a>
+                                        <i class="fas fa-times-circle ml-2 text-danger mr-1"></i>
+                                    <a href="{{ path('announce_show', {'id': announce.id}) }}" class="card_button">Archiver
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </li>
@@ -35,10 +42,10 @@
             </div>
             <div class="tab-pane fade text-center mt-5" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="well bg-light p-5">
-                    <p><i class="fas fa-user-circle"></i> <strong>Pseudo:</strong> {{ app.user.username }}</p>
+                    <p><i class="fas fa-user-circle text-success"></i> <strong>Pseudo:</strong> {{ app.user.username }}</p>
                     <p><i class="far fa-user-circle"></i> <strong>Nom:</strong> {{ app.user.fullname }}</p>
-                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> {{ app.user.email }}</p>
-                    <p><i class="fas fa-phone"></i> <strong>Téléphone:</strong> {{ app.user.phone }}</p>
+                    <p><i class="fas fa-envelope text-info"></i> <strong>Email:</strong> {{ app.user.email }}</p>
+                    <p><i class="fas fa-phone text-warning"></i> <strong>Téléphone:</strong> {{ app.user.phone }}</p>
                     <a href="{{ path('announce_pendulaires') }}" class="btn btn-primary">Editer votre compte</a>
                 </div>
             </div>

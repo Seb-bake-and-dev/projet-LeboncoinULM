@@ -141,7 +141,7 @@ class Announce
     /**
      * @return string
      */
-    public function getPicture3(): string
+    public function getPicture3(): ?string
     {
         return $this->picture3;
     }
@@ -150,7 +150,7 @@ class Announce
      * @param string $picture3
      * @return Announce
      */
-    public function setPicture3(string $picture3): Announce
+    public function setPicture3(?string $picture3): Announce
     {
         $this->picture3 = $picture3;
         return $this;
@@ -187,6 +187,11 @@ class Announce
      * @ORM\ManyToOne(targetEntity="App\Entity\Region", inversedBy="announce")
      */
     private $region;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $city;
 
     public function __construct()
     {
@@ -506,6 +511,18 @@ class Announce
     public function setRegion(?Region $region): self
     {
         $this->region = $region;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(?string $city): self
+    {
+        $this->city = $city;
 
         return $this;
     }
