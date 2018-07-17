@@ -76,6 +76,8 @@ class AnnounceController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $announce->setUser($this->getUser());
+            $announce->setEnabled(1);
             $announce->setDatePost(new \DateTime('NOW'));
             $em->persist($announce);
             $em->flush();

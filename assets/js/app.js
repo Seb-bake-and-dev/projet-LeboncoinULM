@@ -52,7 +52,42 @@ $(document).ready(function () {
 
 });
 
+
 $('input[type="checkbox"]').prop("checked", false).change(function () {
     $("#formMessage").slideToggle(300);
 
 });
+$('#announce_imageFile').bind('change', function () {
+    var filename = $("#announce_imageFile").val();
+    if (/^\s*$/.test(filename)) {
+        $(".file-upload").removeClass('active');
+        $("#noFile").text("No file chosen...");
+    }
+    else {
+        $(".file-upload").addClass('active');
+        $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
+    }
+});
+$('#announce_imageFile2').bind('change', function () {
+    var filename = $("#announce_imageFile2").val();
+    if (/^\s*$/.test(filename)) {
+        $(".file-upload").removeClass('active');
+        $("#noFile2").text("No file chosen...");
+    }
+    else {
+        $(".file-upload").addClass('active');
+        $("#noFile2").text(filename.replace("C:\\fakepath\\", ""));
+    }
+});
+$('#announce_imageFile3').bind('change', function () {
+    var filename = $("#announce_imageFile3").val();
+    if (/^\s*$/.test(filename)) {
+        $(".file-upload").removeClass('active');
+        $("#noFile2").text("No file chosen...");
+    }
+    else {
+        $(".file-upload").addClass('active');
+        $("#noFile3").text(filename.replace("C:\\fakepath\\", ""));
+    }
+});
+

@@ -36,28 +36,24 @@
                                         </div>
                                     {% endif %}
 
-                                    <div class="card_content pb-1">
+                                    <div class="card_content pb-1 w-100">
                                         <h5 class="card-title"> {{ announce.model }} - {{ announce.price }}€</h5>
                                         <p class="card-title font-weight-bold">
                                             Statut: {% if announce.enabled == 1 %}En ligne {% else %}Archivée {% endif %}</p>
                                         <div class="row">
-                                            <div class="card-footer pt-3">
+                                            <div class="card-footer w-100 text-center">
                                                 <a href="{{ path('announce_show', {'id': announce.id}) }}"
-                                                   class="btn btn-sm text-dark col-3">
-                                                    <i class="fas fa-eye text-warning icon-profile"></i>
-                                                    Voir
-                                                </a>
+                                                   class="text-dark col-2 font-weight-bold" title="Voir">
+                                                    <i class="fas fa-eye text-warning pr-1"></i></a>
                                                 {% if announce.enabled == 1 %}
                                                     <a href="{{ path('announce_edit', {'id': announce.id}) }}"
-                                                       class="btn btn-sm text-dark col-3">
-                                                        <i class="fas fa-edit text-success icon-profile"></i>
-                                                        Editer</a>
+                                                       class="text-dark col-2 font-weight-bold" title="Editer">
+                                                        <i class="fas fa-edit text-success mr-1 ml-1"></i></a>
                                                     <a type="button" href="#deleteModal{{ announce.id }}"
                                                        data-toggle="modal"
                                                        data-target="#deleteModal{{ announce.id }}"
-                                                       class="btn btn-sm text-dark col-3 ml-3">
-                                                        <i class="fas fa-trash-alt text-danger"></i>
-                                                        Archiver</a>
+                                                       class="text-dark col-2 font-weight-bold" title="Archiver">
+                                                        <i class="fas fa-trash-alt text-danger"></i></a>
                                                 {% endif %}
                                             </div>
                                         </div>

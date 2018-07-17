@@ -56,21 +56,26 @@
             <strong class="ml-3"> | Heures de
                 vols: </strong>{% if announce.nbrHvol is defined %} {{ announce.nbrHvol }} heures{% else %} Non renseigées. {% endif %}
             <strong class="ml-3"> | Année
-                d'achat: </strong>{% if announce.yearUlm is defined %} {{ announce.yearUlm }} {% else %} Non renseigné. {% endif %}
-            <strong class="ml-3">| Vitesse maxi en
-                km/h: </strong>{% if announce.vitesseMax %} {{ announce.vitesseMax }} {% else %} Non renseignées. {% endif %}
+                de construction: </strong>{% if announce.yearUlm is defined %} {{ announce.yearUlm }} {% else %} Non renseigné. {% endif %}
+            <strong class="ml-3">| Vitesse maxi: </strong>{% if announce.vitesseMax %} {{ announce.vitesseMax }} km/h {% else %} Non renseignées. {% endif %}
 
         </p>
         <p class="mb-5 text-justify"><strong>Description:</strong> {{ announce.description|nl2br }}</p>
         <div class="pb-5">
             <a href="{{ path('announce_pendulaires') }}" class="btn btn-dark float-left"><i
                         class="fas fa-chevron-left"></i> Retour aux annonces</a>
-            <a href="{{ path('announce_pendulaires') }}" class="btn btn-primary float-right ml-2"><i
-                        class="far fa-heart"></i> Mettre en
-                favoris</a>
+            {% if app.user is not null %}
             <a href="{{ path('contact', {'id': announce.id}) }}" class="btn btn-primary float-right"><i
                         class="far fa-envelope"></i>
                 Contacter le vendeur</a>
+                <a href="{{ path('announce_pendulaires') }}" class="btn btn-primary float-right ml-2"><i
+                            class="far fa-heart"></i> Mettre en
+                    favoris</a>
+            {% else %}
+            <a href="{{ path('security_login') }}" class="btn btn-primary float-right">
+                <i class="far fa-address-card"></i>
+                Connectez vous pour contacter le vendeur</a>
+            {% endif %}
 
         </div>
     </div>
