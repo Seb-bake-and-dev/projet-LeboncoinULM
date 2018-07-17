@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/announces")
  */
-class AnnouncePendulaireController extends Controller
+class AnnounceController extends Controller
 {
     /**
      * @Route("/pendulaires", name="announce_pendulaires", methods="GET|POST")
@@ -102,9 +102,15 @@ class AnnouncePendulaireController extends Controller
      */
     public function edit(Request $request, Announce $announce): Response
     {
+        if ($this->getUser() !== $announce->getUser()) {
+            $this->addFlash(
+                'comment',
+                'Impossible de supprimer ce message.'
+            );
+            return $this->redirectToRoute('announce_pendulaires');
+        }
         $form = $this->createForm(AnnounceType::class, $announce);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
@@ -116,19 +122,24 @@ class AnnouncePendulaireController extends Controller
             'form' => $form->createView(),
         ]);
     }
-
     /**
      * @Route("/{id}", name="announce_delete", methods="DELETE")
      */
     public function delete(Request $request, Announce $announce): Response
     {
-        $form = $this->createForm(AnnounceType::class, $announce);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('announce_edit', ['id' => $announce->getId()]);
+        if ($this->getUser() !== $announce->getUser()) {
+            $this->addFlash(
+                'comment',
+                'Impossible de supprimer ce message.'
+            );
+            return $this->redirectToRoute('profile');
         }
+        if ($this->isCsrfTokenValid('delete'.$announce->getId(), $request->request->get('_token'))) {
+            $em = $this->getDoctrine()->getManager();
+            $announce->setEnabled(0);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('profile');
     }
 }

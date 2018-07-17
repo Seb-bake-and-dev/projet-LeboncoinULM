@@ -17,22 +17,78 @@
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <ul class="cards mt-3">
+                    {% if announces is empty %}
+                        <div class="row mx-auto mt-5"><p>Vous n'avez pas ajoutée d'annonce.</p></div>
+                    {% endif %}
                     {% for announce in announces %}
+
                         <li class="cards_item col-4">
                             <div class="card">
-                                <div class="card_image">
-                                    <img src="{{ asset('images/products/' ~ announce.picture) }}" class="img-announce">
-                                </div>
-                                <div class="card_content">
-                                    <h5 class="card-title"> {{ announce.model }} - {{ announce.price }}€</h5>
-                                    <a href="{{ path('announce_show', {'id': announce.id}) }}" class="card_button mb-2">Voir
-                                        l'annonce</a>
-                                    <div class="row ml-1"><i class="fas fa-edit text-success mr-1"></i>
-                                    <a href="{{ path('announce_edit', {'id': announce.id}) }}" class="card_button">Editer
-                                       </a>
-                                        <i class="fas fa-times-circle ml-2 text-danger mr-1"></i>
-                                    <a href="{{ path('announce_show', {'id': announce.id}) }}" class="card_button">Archiver
-                                        </a>
+                                <div class="position-relative">
+                                    <div class="card_image {% if announce.enabled == 0 %}greyscale{% endif %}">
+                                        <img src="{{ asset('images/products/' ~ announce.picture) }}"
+                                             class="img-announce">
+                                    </div>
+                                    {% if announce.enabled == 0 %}
+
+                                        <div class="position-absolute text-archive">
+                                            <p class="text-center">ARCHIVÉE</p>
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="card_content pb-1">
+                                        <h5 class="card-title"> {{ announce.model }} - {{ announce.price }}€</h5>
+                                        <p class="card-title font-weight-bold">
+                                            Statut: {% if announce.enabled == 1 %}En ligne {% else %}Archivée {% endif %}</p>
+                                        <div class="row">
+                                            <div class="card-footer pt-3">
+                                                <a href="{{ path('announce_show', {'id': announce.id}) }}"
+                                                   class="btn btn-sm text-dark col-3">
+                                                    <i class="fas fa-eye text-warning icon-profile"></i>
+                                                    Voir
+                                                </a>
+                                                {% if announce.enabled == 1 %}
+                                                    <a href="{{ path('announce_edit', {'id': announce.id}) }}"
+                                                       class="btn btn-sm text-dark col-3">
+                                                        <i class="fas fa-edit text-success icon-profile"></i>
+                                                        Editer</a>
+                                                    <a type="button" href="#deleteModal{{ announce.id }}"
+                                                       data-toggle="modal"
+                                                       data-target="#deleteModal{{ announce.id }}"
+                                                       class="btn btn-sm text-dark col-3 ml-3">
+                                                        <i class="fas fa-trash-alt text-danger"></i>
+                                                        Archiver</a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="deleteModal{{ announce.id }}" tabindex="-1"
+                                             role="dialog" aria-labelledby="exampleModalLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">
+                                                            Archiver {{ announce.model }} - {{ announce.price }}
+                                                            €</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Voulez vous vraiment archiver cette annonce ?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Retour
+                                                        </button>
+                                                        {{ include('announce/_delete_form.html.twig') }}
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -42,7 +98,8 @@
             </div>
             <div class="tab-pane fade text-center mt-5" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="well bg-light p-5">
-                    <p><i class="fas fa-user-circle text-success"></i> <strong>Pseudo:</strong> {{ app.user.username }}</p>
+                    <p><i class="fas fa-user-circle text-success"></i> <strong>Pseudo:</strong> {{ app.user.username }}
+                    </p>
                     <p><i class="far fa-user-circle"></i> <strong>Nom:</strong> {{ app.user.fullname }}</p>
                     <p><i class="fas fa-envelope text-info"></i> <strong>Email:</strong> {{ app.user.email }}</p>
                     <p><i class="fas fa-phone text-warning"></i> <strong>Téléphone:</strong> {{ app.user.phone }}</p>

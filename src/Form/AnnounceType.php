@@ -72,7 +72,7 @@ class AnnounceType extends AbstractType
                 'required' => false,
             ])
             ->add('vitesseMax', IntegerType::class, [
-                'label' => 'Vitesse Maxi de l\'ulm',
+                'label' => 'Vitesse Maxi de l\'ulm en km/h',
                 'required' => false,
             ])
             ->add('nbrHvol', IntegerType::class, [

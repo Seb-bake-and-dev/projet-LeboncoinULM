@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="container pt-5">
-        <h5 class="card-title  col-7 mt-5"> Annonces Ulm pendulaire</h5>
+        <h5 class="card-title col-7 mt-5"> Annonces Ulm pendulaire</h5>
 
         <hr>
         <div class="row">
@@ -43,7 +43,7 @@
                         </div>
                         <div class="card_content">
                             <h5 class="card-title"> {{ announce.model }} - {{ announce.price }}€</h5>
-                            <p>Ville: {{ announce.city }}</p>
+                            <h6 class="card-title">{{ announce.city }}</h6>
                                 <p>Posté le: {{ announce.DatePost.date|date("d/m/Y") }}</p>
                             <a href="{{ path('announce_show', {'id': announce.id}) }}" class="card_button">Voir
                                 l'annonce</a>
