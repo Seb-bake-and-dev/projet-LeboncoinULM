@@ -23,13 +23,13 @@ input::-webkit-outer-spin-button {
 
 .file-upload .file-select {
   display: block;
-  border: 2px solid #f7f7f9;
+  border: 1px solid #f7f7f9;
   color: #34495e;
   cursor: pointer;
   height: 40px;
   line-height: 40px;
   text-align: left;
-  background: #FFFFFF;
+  background-color: rgba(204,204 ,204, 0.42);
   overflow: hidden;
   position: relative;
 }

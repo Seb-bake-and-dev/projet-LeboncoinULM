@@ -98,6 +98,13 @@ select{
 }
 
 .custom-select{
-  height: 40px;
+  height: 48px;
 }
 
+.form-control {
+  background-color: rgba(204,204 ,204, 0.42);
+}
+
+#region_filter{
+  background-color: black;
+}
