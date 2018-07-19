@@ -13,6 +13,10 @@
                 <a class="nav-link text-dark" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
                    aria-controls="profile" aria-selected="false">Vos informations</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="favorite-tab" data-toggle="tab" href="#favorite" role="tab"
+                   aria-controls="favorite" aria-selected="false">Annonces favoris</a>
+            </li>
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -101,6 +105,84 @@
                     <p><i class="fas fa-phone text-warning"></i> <strong>Téléphone:</strong> {{ app.user.phone }}</p>
                     <a href="{{ path('announce_pendulaires') }}" class="btn btn-primary">Editer votre compte</a>
                 </div>
+            </div>
+            <div class="tab-pane fade text-center mt-5" id="favorite" role="favpanel" aria-labelledby="favorite-tab">
+                <ul class="cards mt-3">
+                    {% if fav.active is  defined %}
+                    <div class="row mx-auto mt-5"><p>Vous n'avez pas ajoutée d'annonce.</p></div>
+                    {% else %}
+                    {% for favorit in fav %}
+
+                        <li class="cards_item col-4">
+                            <div class="card">
+                                <div class="position-relative">
+                                    <div class="card_image {% if favorit.announce.enabled == 0 %}greyscale{% endif %}">
+                                        <img src="{{ asset('images/products/' ~ favorit.announce.picture) }}"
+                                             class="img-announce">
+                                    </div>
+                                    {% if favorit.announce.enabled == 0 %}
+
+                                        <div class="position-absolute text-archive">
+                                            <p class="text-center">ARCHIVÉE</p>
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="card_content pb-1 w-100">
+                                        <h5 class="card-title"> {{ favorit.announce.model }} - {{ favorit.announce.price }}€</h5>
+                                        <p class="card-title font-weight-bold">
+                                            Statut: {% if favorit.announce.enabled == 1 %}En ligne {% else %}Archivée {% endif %}</p>
+                                        <div class="row">
+                                            <div class="card-footer w-100 text-center">
+                                                <a href="{{ path('announce_show', {'id': favorit.announce.id}) }}"
+                                                   class="text-dark col-2 font-weight-bold" title="Voir">
+                                                    <i class="fas fa-eye text-warning pr-1"></i></a>
+                                                {% if favorit.announce.enabled == 1 %}
+                                                    <a href="{{ path('announce_edit', {'id': favorit.announce.id}) }}"
+                                                       class="text-dark col-2 font-weight-bold" title="Editer">
+                                                        <i class="fas fa-edit text-success mr-1 ml-1"></i></a>
+                                                    <a type="button" href="#deleteModal{{ favorit.announce.id }}"
+                                                       data-toggle="modal"
+                                                       data-target="#deleteModal{{ favorit.announce.id }}"
+                                                       class="text-dark col-2 font-weight-bold" title="Archiver">
+                                                        <i class="fas fa-trash-alt text-danger"></i></a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="deleteModal{{ favorit.announce.id }}" tabindex="-1"
+                                             role="dialog" aria-labelledby="exampleModalLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">
+                                                            Archiver {{ favorit.announce.model }} - {{ favorit.announce.price }}
+                                                            €</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Voulez vous vraiment archiver cette annonce ?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Retour
+                                                        </button>
+                                                        {#{{ include('announce/_delete_form.html.twig') }}#}
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
             </div>
         </div>
     </div>
