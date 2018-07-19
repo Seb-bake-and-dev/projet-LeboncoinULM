@@ -19,14 +19,20 @@ class Favorite
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="User")
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    private $User;
+    private $active;
+
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Announce", inversedBy="favorites")
      */
     private $Announce;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="favorites")
+     */
+    private $user;
 
 
     public function __construct()
@@ -41,33 +47,7 @@ class Favorite
     }
 
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUser(): Collection
-    {
-        return $this->User;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->User->contains($user)) {
-            $this->User[] = $user;
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->User->contains($user)) {
-            $this->User->removeElement($user);
-        }
-
-        return $this;
-    }
-
-    public function getAnnounce(): ?Announce
+    public function getAnnounce()
     {
         return $this->Announce;
     }
@@ -79,4 +59,31 @@ class Favorite
         return $this;
     }
 
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param mixed $active
+     */
+    public function setActive($active): void
+    {
+        $this->active = $active;
+    }
 }

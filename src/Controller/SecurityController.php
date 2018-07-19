@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use App\Entity\Announce;
+use App\Entity\Favorite;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,9 +38,11 @@ class SecurityController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
-        $announces = $em->getRepository(Announce::class)->findBy(['user' => $user ], ['DatePost' => 'DESC ']);
+        $announces = $em->getRepository(Announce::class)->findBy(['user' => $user ], ['DatePost' => 'DESC']);
+        $fav = $em->getRepository(Favorite::class)->findBy(['user'=>$user]);
         return $this->render('user/profile.html.twig', [
             'announces'=> $announces,
+            'fav' => $fav,
         ]);
     }
 

@@ -56,25 +56,49 @@
             <strong class="ml-3"> | Heures de
                 vols: </strong>{% if announce.nbrHvol is defined %} {{ announce.nbrHvol }} heures{% else %} Non renseigées. {% endif %}
             <strong class="ml-3"> | Année
-                de construction: </strong>{% if announce.yearUlm is defined %} {{ announce.yearUlm }} {% else %} Non renseigné. {% endif %}
-            <strong class="ml-3">| Vitesse maxi: </strong>{% if announce.vitesseMax %} {{ announce.vitesseMax }} km/h {% else %} Non renseignées. {% endif %}
+                de
+                construction: </strong>{% if announce.yearUlm is defined %} {{ announce.yearUlm }} {% else %} Non renseigné. {% endif %}
+            <strong class="ml-3">| Vitesse
+                maxi: </strong>{% if announce.vitesseMax %} {{ announce.vitesseMax }} km/h {% else %} Non renseignées. {% endif %}
 
         </p>
         <p class="mb-5 text-justify"><strong>Description:</strong> {{ announce.description|nl2br }}</p>
         <div class="pb-5">
-            <a href="{{ path('announce_pendulaires') }}" class="btn btn-dark float-left"><i
-                        class="fas fa-chevron-left"></i> Retour aux annonces</a>
+            <a href="{{ path('announce_pendulaires') }}" class="btn btn-dark float-left">
+                <i class="fas fa-chevron-left"></i> Retour aux annonces</a>
             {% if app.user is not null %}
-            <a href="{{ path('contact', {'id': announce.id}) }}" class="btn btn-primary float-right"><i
-                        class="far fa-envelope"></i>
-                Contacter le vendeur</a>
-                <a href="{{ path('announce_pendulaires') }}" class="btn btn-primary float-right ml-2"><i
-                            class="far fa-heart"></i> Mettre en
-                    favoris</a>
+                <a href="{{ path('contact', {'id': announce.id}) }}" class="btn btn-primary float-right"><i
+                            class="far fa-envelope"></i>
+                    Contacter le vendeur</a>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    {% set thisAnnounce = 0 %}
+                    {% set idAnnounce = "" %}
+                    {% for favorite in favorite %}
+                        {% if favorite.announce.id == announce.id %}
+                            {% if favorite.active == 1 %}
+                                {% set thisAnnounce = 1 %}
+                                {% set idAnnounce = announce.id %}
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if thisAnnounce == 0 %}
+                        <a href="{{ path('favorite_new', { id : announce.id } ) }}"
+                           class="btn btn-primary float-right ml-2" id="fav">
+                            <i class="far fa-heart"></i> Ajouter dans mes favoris</a>
+                    {% else %}
+                        <a href="#"
+                           class="btn btn-primary float-right ml-2" id="fav">
+                            <i class="fas fa-heart text-warning"></i> Annonce ajoutée en favoris </a>
+                    {% endif %}
+                {% else %}
+                    <a href="#"
+                       class="btn btn-primary float-right ml-2" id="fav">
+                        <i class="far fa-heart"></i> Ajouter dans mes favoris</a>
+                {% endif %}
             {% else %}
-            <a href="{{ path('security_login') }}" class="btn btn-primary float-right">
-                <i class="far fa-address-card"></i>
-                Connectez vous pour contacter le vendeur</a>
+                <a href="{{ path('security_login') }}" class="btn btn-primary float-right">
+                    <i class="far fa-address-card"></i>
+                    Connectez vous pour contacter le vendeur</a>
             {% endif %}
 
         </div>

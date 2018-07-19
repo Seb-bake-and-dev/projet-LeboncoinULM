@@ -192,10 +192,15 @@ class Announce
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $city;
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Favorite", mappedBy="Announce")
+     */
+    private $favorites;
 
     public function __construct()
     {
         $this->announce = new ArrayCollection();
+        $this->favorites = new ArrayCollection();
     }
 
     /**
@@ -523,6 +528,37 @@ class Announce
     public function setCity(?string $city): self
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Favorite[]
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
+
+    public function addFavorite(Favorite $favorite): self
+    {
+        if (!$this->favorites->contains($favorite)) {
+            $this->favorites[] = $favorite;
+            $favorite->setAnnounce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Favorite $favorite): self
+    {
+        if ($this->favorites->contains($favorite)) {
+            $this->favorites->removeElement($favorite);
+            // set the owning side to null (unless already changed)
+            if ($favorite->getAnnounce() === $this) {
+                $favorite->setAnnounce(null);
+            }
+        }
 
         return $this;
     }

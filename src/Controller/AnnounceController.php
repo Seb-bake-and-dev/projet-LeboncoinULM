@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Announce;
+use App\Entity\Favorite;
 use App\Entity\Region;
 use App\Entity\TypeUlm;
 use App\Form\AnnounceType;
@@ -96,7 +97,9 @@ class AnnounceController extends Controller
      */
     public function show(Announce $announce): Response
     {
-        return $this->render('announce/pendulaires/show.html.twig', ['announce' => $announce]);
+        $em = $this->getDoctrine()->getManager();
+        $favorite = $em->getRepository(Favorite::class)->findAll();
+        return $this->render('announce/pendulaires/show.html.twig', ['announce' => $announce, 'favorite' => $favorite]);
     }
 
     /**
