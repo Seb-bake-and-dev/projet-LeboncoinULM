@@ -86,12 +86,12 @@
                            class="btn btn-primary float-right ml-2" id="fav">
                             <i class="far fa-heart"></i> Ajouter dans mes favoris</a>
                     {% else %}
-                        <a href="{{ path('favorite_new', { id : idAnnounce } ) }}"
+                        <a href="#"
                            class="btn btn-primary float-right ml-2" id="fav">
-                            <i class="fas fa-heart selectedPills"></i> Annonce ajoutée en favoris </a>
+                            <i class="fas fa-heart text-warning"></i> Annonce ajoutée en favoris </a>
                     {% endif %}
                 {% else %}
-                    <a href="{{ path('fos_user_registration_register') }}"
+                    <a href="#"
                        class="btn btn-primary float-right ml-2" id="fav">
                         <i class="far fa-heart"></i> Ajouter dans mes favoris</a>
                 {% endif %}
