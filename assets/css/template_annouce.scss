@@ -47,14 +47,14 @@ $card-radius:         0;
 .card {
   display: flex;
   flex-direction: column;
-  transition: transform .5s; /* Animation */
+  transition: 0.7s; /* Animation */
   background-color: $card-background;
   border: $card-border-width solid $card-border-color;
   border-radius: $card-radius;
   &:hover {
-    transition: transform .5s; /* Animation */
     transform: scale(1.025);
-    box-shadow: 2px 2px 15px rgba(155, 155, 155, 0.4);
+    filter:drop-shadow(5px 5px 10px #c4c4c4);
+    transition: filter 0.3s, transform 0.8s;
   }
 }
 
