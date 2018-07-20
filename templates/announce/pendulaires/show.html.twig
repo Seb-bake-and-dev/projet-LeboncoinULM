@@ -83,11 +83,11 @@
                     {% endfor %}
                     {% if thisAnnounce == 0 %}
                         <a href="{{ path('favorite_new', { 'id': announce.id } ) }}"
-                           class="btn btn-primary float-right ml-2" id="fav">
+                           class="btn btn-primary float-right ml-2" id="msg_anchor">
                             <i class="far fa-heart"></i> Ajouter dans mes favoris</a>
                     {% else %}
                         <a href="{{ path('favorite_defav', { 'id': idFavorite } ) }}"
-                           class="btn btn-primary float-right ml-2" id="fav">
+                           class="btn btn-primary float-right ml-2" id="msg_anchor">
                             <i class="fas fa-heart text-warning"></i> Supprimer des favoris </a>
                     {% endif %}
                 {% endif %}

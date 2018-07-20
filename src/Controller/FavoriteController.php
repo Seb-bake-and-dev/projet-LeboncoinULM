@@ -31,7 +31,7 @@ class FavoriteController extends Controller
         $em->persist($favorite);
         $em->flush();
 
-        return $this->redirectToRoute('announce_show', ['id' => $announce->getId()]);
+        return $this->redirectToRoute('announce_show', ['id' => $announce->getId(),'_fragment' => 'msg_anchor']);
 
     }
 
@@ -46,7 +46,7 @@ class FavoriteController extends Controller
         $favorite->setActive(0);
         $announce = $favorite->getAnnounce();
         $em->flush();
-        return $this->redirectToRoute('announce_show', ['id' => $announce->getId()]);
+        return $this->redirectToRoute('announce_show', ['id' => $announce->getId(), '_fragment' => 'msg_anchor']);
     }
 
 }
