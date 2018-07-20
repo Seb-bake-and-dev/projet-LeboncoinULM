@@ -39,7 +39,7 @@ class SecurityController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $announces = $em->getRepository(Announce::class)->findBy(['user' => $user ], ['DatePost' => 'DESC']);
-        $fav = $em->getRepository(Favorite::class)->findBy(['user'=>$user]);
+        $fav = $em->getRepository(Favorite::class)->findBy(['user'=>$user, 'active'=>1]);
         return $this->render('user/profile.html.twig', [
             'announces'=> $announces,
             'fav' => $fav,
