@@ -36,7 +36,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce->setYearUlm(1991);
         $announce->setNbrHvol(903);
         $announce->setEnabled(1);
-        $announce->setUser($this->getReference('john_user'));
+        $announce->setUser($this->getReference('Benjamin'));
         $announce->setRegion($this->getReference('Auvergne'));
         $announce->setCity('Clermont Ferrand');
         $manager->persist($announce);
@@ -58,7 +58,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce2->setYearUlm(1991);
         $announce2->setNbrHvol(903);
         $announce2->setEnabled(1);
-        $announce2->setUser($this->getReference('john_user'));
+        $announce2->setUser($this->getReference('Benjamin'));
         $announce2->setRegion($this->getReference('Auvergne'));
         $announce2->setCity('Clermont Ferrand');
         $manager->persist($announce2);
@@ -80,7 +80,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce3->setYearUlm(1991);
         $announce3->setNbrHvol(903);
         $announce3->setEnabled(1);
-        $announce3->setUser($this->getReference('john_user'));
+        $announce3->setUser($this->getReference('Benjamin'));
         $announce3->setRegion($this->getReference('Occitanie'));
         $announce3->setCity('Clermont Ferrand');
 
@@ -103,7 +103,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce4->setYearUlm(1991);
         $announce4->setNbrHvol(903);
         $announce4->setEnabled(1);
-        $announce4->setUser($this->getReference('john_user'));
+        $announce4->setUser($this->getReference('Benjamin'));
         $announce4->setRegion($this->getReference('Auvergne'));
         $announce4->setCity('Clermont Ferrand');
 
@@ -126,7 +126,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce5->setYearUlm(1991);
         $announce5->setNbrHvol(903);
         $announce5->setEnabled(1);
-        $announce5->setUser($this->getReference('john_user'));
+        $announce5->setUser($this->getReference('Benjamin'));
         $announce5->setRegion($this->getReference('Auvergne'));
         $announce5->setCity('Clermont Ferrand');
 
@@ -149,7 +149,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce6->setYearUlm(1991);
         $announce6->setNbrHvol(903);
         $announce6->setEnabled(1);
-        $announce6->setUser($this->getReference('john_user'));
+        $announce6->setUser($this->getReference('Benjamin'));
         $announce6->setCity('Orléans');
 
         $manager->persist($announce6);
@@ -171,7 +171,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce7->setYearUlm(1991);
         $announce7->setNbrHvol(903);
         $announce7->setEnabled(1);
-        $announce7->setUser($this->getReference('john_user'));
+        $announce7->setUser($this->getReference('Benjamin'));
         $announce7->setRegion($this->getReference('Auvergne'));
         $announce7->setCity('Roanne');
 
@@ -194,7 +194,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce8->setYearUlm(1991);
         $announce8->setNbrHvol(903);
         $announce8->setEnabled(0);
-        $announce8->setUser($this->getReference('john_user'));
+        $announce8->setUser($this->getReference('Benjamin'));
         $announce8->setRegion($this->getReference('Normandie'));
         $announce8->setCity('Lille');
 
@@ -217,7 +217,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce9->setYearUlm(1991);
         $announce9->setNbrHvol(903);
         $announce9->setEnabled(0);
-        $announce9->setUser($this->getReference('john_user'));
+        $announce9->setUser($this->getReference('Benjamin'));
         $announce9->setRegion($this->getReference('Normandie'));
         $announce9->setCity('Lille');
 
@@ -240,7 +240,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce10->setYearUlm(1991);
         $announce10->setNbrHvol(903);
         $announce10->setEnabled(1);
-        $announce10->setUser($this->getReference('john_user'));
+        $announce10->setUser($this->getReference('raphmania'));
         $announce10->setRegion($this->getReference('Occitanie'));
         $announce10->setCity('Bordeaux');
 
@@ -263,7 +263,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce11->setYearUlm(1991);
         $announce11->setNbrHvol(903);
         $announce11->setEnabled(1);
-        $announce11->setUser($this->getReference('john_user'));
+        $announce11->setUser($this->getReference('Benjamin'));
         $announce11->setRegion($this->getReference('Occitanie'));
         $announce11->setCity('Bordeaux');
 
@@ -286,7 +286,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce12->setYearUlm(1991);
         $announce12->setNbrHvol(903);
         $announce12->setEnabled(1);
-        $announce12->setUser($this->getReference('john_user'));
+        $announce12->setUser($this->getReference('Benjamin'));
         $announce12->setRegion($this->getReference('Occitanie'));
         $announce12->setCity('Bordeaux');
 
@@ -309,7 +309,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce13->setYearUlm(1991);
         $announce13->setNbrHvol(903);
         $announce13->setEnabled(1);
-        $announce13->setUser($this->getReference('john_user'));
+        $announce13->setUser($this->getReference('Benjamin'));
         $announce13->setRegion($this->getReference('Occitanie'));
         $announce13->setCity('Bordeaux');
 
@@ -332,7 +332,7 @@ class PendulaireFixtures extends Fixture implements DependentFixtureInterface
         $announce14->setYearUlm(1991);
         $announce14->setNbrHvol(903);
         $announce14->setEnabled(1);
-        $announce14->setUser($this->getReference('john_user'));
+        $announce14->setUser($this->getReference('Benjamin'));
         $announce14->setRegion($this->getReference('Occitanie'));
         $announce14->setCity('Bordeaux');
 

@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Announce;
 use App\Entity\Favorite;
 use App\Repository\FavoriteRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/favorite")
@@ -35,18 +36,17 @@ class FavoriteController extends Controller
     }
 
     /**
-     * @Route("/delete/{id}", name="favorite_delete", methods="GET|POST")
+     * @Route("/deleteFav/{id}", name="favorite_defav", methods="GET")
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
      */
-    public function deleteFav(Announce $announce): Response
+    public function delfav(Favorite $favorite)
     {
-        $favorite = new Favorite();
         $em = $this->getDoctrine()->getManager();
-        $favorite->setUser($this->getUser());
-        $favorite->setAnnounce($announce);
         $favorite->setActive(0);
-        $em->persist($favorite);
+        $announce = $favorite->getAnnounce();
         $em->flush();
-
         return $this->redirectToRoute('announce_show', ['id' => $announce->getId()]);
     }
+
 }

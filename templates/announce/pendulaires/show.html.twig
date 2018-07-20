@@ -72,28 +72,24 @@
                     Contacter le vendeur</a>
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     {% set thisAnnounce = 0 %}
-                    {% set idAnnounce = "" %}
+                    {% set idFavorite = "" %}
                     {% for favorite in favorite %}
                         {% if favorite.announce.id == announce.id %}
                             {% if favorite.active == 1 %}
                                 {% set thisAnnounce = 1 %}
-                                {% set idAnnounce = announce.id %}
+                                {% set idFavorite = favorite.id %}
                             {% endif %}
                         {% endif %}
                     {% endfor %}
                     {% if thisAnnounce == 0 %}
-                        <a href="{{ path('favorite_new', { id : announce.id } ) }}"
+                        <a href="{{ path('favorite_new', { 'id': announce.id } ) }}"
                            class="btn btn-primary float-right ml-2" id="fav">
                             <i class="far fa-heart"></i> Ajouter dans mes favoris</a>
                     {% else %}
-                        <a href="#"
+                        <a href="{{ path('favorite_defav', { 'id': idFavorite } ) }}"
                            class="btn btn-primary float-right ml-2" id="fav">
-                            <i class="fas fa-heart text-warning"></i> Annonce ajoutée en favoris </a>
+                            <i class="fas fa-heart text-warning"></i> Supprimer des favoris </a>
                     {% endif %}
-                {% else %}
-                    <a href="#"
-                       class="btn btn-primary float-right ml-2" id="fav">
-                        <i class="far fa-heart"></i> Ajouter dans mes favoris</a>
                 {% endif %}
             {% else %}
                 <a href="{{ path('security_login') }}" class="btn btn-primary float-right">
