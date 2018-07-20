@@ -47,10 +47,15 @@ $card-radius:         0;
 .card {
   display: flex;
   flex-direction: column;
-
+  transition: transform .5s; /* Animation */
   background-color: $card-background;
   border: $card-border-width solid $card-border-color;
   border-radius: $card-radius;
+  &:hover {
+    transition: transform .5s; /* Animation */
+    transform: scale(1.025);
+    box-shadow: 2px 2px 15px rgba(155, 155, 155, 0.4);
+  }
 }
 
 .card_image {
@@ -58,6 +63,7 @@ $card-radius:         0;
     width: 100%;
     border-top-left-radius: ( $card-radius - $card-border-width );
     border-top-right-radius: ( $card-radius - $card-border-width );
+
   }
 }
 
