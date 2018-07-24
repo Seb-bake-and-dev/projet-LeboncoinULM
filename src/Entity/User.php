@@ -86,11 +86,23 @@ class User implements UserInterface, \Serializable
      */
     private $favorites;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\FMessage", mappedBy="user")
+     */
+    private $fMessages;
+
+    public function __toString()
+    {
+        return $this->getUsername();
+    }
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
         $this->announces = new ArrayCollection();
         $this->favorites = new ArrayCollection();
+        $this->User = new ArrayCollection();
+        $this->fMessages = new ArrayCollection();
     }
 
     public function getId(): int
@@ -305,4 +317,36 @@ class User implements UserInterface, \Serializable
 
         return $this;
     }
+
+    /**
+     * @return Collection|FMessage[]
+     */
+    public function getFMessages(): Collection
+    {
+        return $this->fMessages;
+    }
+
+    public function addFMessage(FMessage $fMessage): self
+    {
+        if (!$this->fMessages->contains($fMessage)) {
+            $this->fMessages[] = $fMessage;
+            $fMessage->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFMessage(FMessage $fMessage): self
+    {
+        if ($this->fMessages->contains($fMessage)) {
+            $this->fMessages->removeElement($fMessage);
+            // set the owning side to null (unless already changed)
+            if ($fMessage->getUser() === $this) {
+                $fMessage->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
