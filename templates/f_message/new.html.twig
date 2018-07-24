@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="container pt-5">
+    <h5 class="card-title col-7 mt-5"> Ajouter un message</h5>
+    <h1>Create new FMessage</h1>
+
+    {{ include('f_message/_form.html.twig') }}
+
+    <a href="{{ path('f_message_index') }}">back to list</a>
+{% endblock %}

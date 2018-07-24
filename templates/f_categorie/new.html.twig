@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New FCategorie{% endblock %}
+
+{% block body %}
+    <h1>Create new FCategorie</h1>
+
+    {{ include('f_categorie/_form.html.twig') }}
+
+    <a href="{{ path('f_categorie_index') }}">back to list</a>
+{% endblock %}
