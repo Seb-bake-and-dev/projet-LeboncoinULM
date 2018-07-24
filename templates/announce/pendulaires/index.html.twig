@@ -38,13 +38,13 @@
             {% for announce in announces %}
                 <li class="cards_item ">
                     <div class="card">
-                        <div class="card_image">
+                        <a class="card_image" href="{{ path('announce_show', {'id': announce.id}) }}">
                             <img src="{{ asset('images/products/' ~ announce.picture) }}" class=" img-announce">
-                        </div>
+                        </a>
                         <div class="card_content">
                             <h5 class="card-title"> {{ announce.model }} - {{ announce.price }}€</h5>
                             <h6 class="card-title">{{ announce.city }}</h6>
-                                <p>Posté le: {{ announce.DatePost.date|date("d/m/Y") }}</p>
+                            <p>Posté le: {{ announce.DatePost.date|date("d/m/Y") }}</p>
                             <div class="card-footer w-100 text-center">
                                 <a href="{{ path('announce_show', {'id': announce.id}) }}"
                                    class="text-dark col-2 font-weight-bold" title="Voir">

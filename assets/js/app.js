@@ -13,6 +13,7 @@ $(document).ready(function () {
         $('#trans1').css('background-position', 'center -' + parseInt(x / 5) + 'px');
     });
 
+
 });
 
 $('#plus').click(function () {
@@ -47,6 +48,7 @@ $('#minus1').click(function () {
 });
 
 $(document).ready(function () {
+
     $('input[type="checkbox"]').addClass('toggles').wrap('<label class="switch mr-4"></label>').after('<span class="slider round"></span>');
     $("#formMessage").hide();
 

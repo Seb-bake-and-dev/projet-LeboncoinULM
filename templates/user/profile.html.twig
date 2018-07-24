@@ -25,21 +25,18 @@
                         <div class="row mx-auto mt-5"><p>Vous n'avez pas ajoutée d'annonce.</p></div>
                     {% endif %}
                     {% for announce in announces %}
-
                         <li class="cards_item col-4">
                             <div class="card">
                                 <div class="position-relative">
-                                    <div class="card_image {% if announce.enabled == 0 %}greyscale{% endif %}">
+                                    <a class="card_image {% if announce.enabled == 0 %}greyscale{% endif %}" href="{{ path('announce_show', {'id': announce.id}) }}">
                                         <img src="{{ asset('images/products/' ~ announce.picture) }}"
                                              class="img-announce">
-                                    </div>
+                                    </a>
                                     {% if announce.enabled == 0 %}
-
                                         <div class="position-absolute text-archive">
                                             <p class="text-center">ARCHIVÉE</p>
                                         </div>
                                     {% endif %}
-
                                     <div class="card_content pb-1 w-100">
                                         <h5 class="card-title"> {{ announce.model }} - {{ announce.price }}€</h5>
                                         <p class="card-title font-weight-bold">

@@ -27,16 +27,13 @@
   background-size: cover;
 }
 
-
 .txt {
-
 
   font-family: 'Londrina Solid', cursive;
   font-size: 45px;
   color: #000;
   width: auto;
-  background: #F9B802;
-  background: rgba(249, 184, 2, 0.60);
+  background: #f79f13;
   padding: 5px 10px;
 }
 
@@ -53,20 +50,22 @@
 }
 
 .txt.sub {
+  position: absolute;
+  bottom: 165px;
   background: #000;
   background: rgba(0, 0, 0, 0.60);
   font-size: 25px;
   color: #ccc;
-  margin: 0 100px 0 100px;
 }
 
 .center {
-  position: relative;
-  top: 1%;
+  position: absolute;
+  bottom: 210px;
+  left: 70px;
   transform: translateY(-50%);
   float: left;
   text-align: left;
-  margin: 150px 0 0 100px;
+  //margin: 150px 0 0 100px;
 }
 
 .content {
