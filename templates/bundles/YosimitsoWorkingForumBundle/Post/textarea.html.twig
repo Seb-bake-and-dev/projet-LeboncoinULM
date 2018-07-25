@@ -1,5 +1,5 @@
 {% trans_default_domain 'YosimitsoWorkingForumBundle' %}
-<div class="wf_new_post mt-5" id="wf_new_post">
+<div class="wf_new_post mt-5 w-100" id="wf_new_post">
     {% block header %}
     {% endblock %}
     <script>
@@ -33,9 +33,10 @@
 
     {#</div>#}
     <div class="wf_clear"></div>
-    <p>{{ form_widget(form.content) }}</p>
+    <div class="row"><div class="col-12 w-100">{{ form_widget(form.content) }}</div></div>
 
-    {% if parameters.fileUpload.enable and form.filesUploaded is defined %} {# FILE UPLOAD ARE ALLOWED#}
+
+    {% if parameters.fileUpload.enable and form.filesUploaded is defined %}  FILE UPLOAD ARE ALLOWED
         <div class="wf_file_upload">
             <div class="wf_header-block">
                 {{ 'forum.enclosed_files' | trans }} <span

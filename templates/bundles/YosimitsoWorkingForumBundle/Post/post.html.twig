@@ -1,21 +1,20 @@
 {% trans_default_domain 'YosimitsoWorkingForumBundle' %}
 <div class="wf_post">
-    <hr>
-    <div class="row mt-5">
+    <div class="row">
         <div class="col-2">
-            {#<img class="wf_cadre-img" src="#}
-            {#{% if post.user.avatarUrl is not empty %}#}
-            {#{{ asset('bundles/yosimitsoworkingforum/'~post.user.avatarUrl) }}#}
-            {#{% else %}#}
-            {#{{ asset('bundles/yosimitsoworkingforum/images/avatar/default.png') }}#}
-            {#{% endif %}#}
+            <img class="wf_cadre-img" src="
+            {% if post.user.avatarUrl is not empty %}
+            {{ asset('bundles/yosimitsoworkingforum/'~post.user.avatarUrl) }}
+            {% else %}
+            {{ asset('bundles/yosimitsoworkingforum/images/avatar/default.png') }}
+            {% endif %}
 
-            {#"/>#}
+            "/>
             <p class="wf_username" id="wf_user{{ post.user.id }}">{{ post.user.username }}</p>
             <p class="wf_message">{{ post.user.nbPost }} {{ 'forum.nbPost' | trans }}</p>
             <p class="wf_message">{% if post.user.roles.0 is defined %} {{ (('forum.user.'~post.user.roles.0) | trans) }} {% else %} {{ ('forum.user.ROLE_USER' | trans) }}{% endif %}</p>
         </div>
-        <div class="col-10{% if post.voteUp >= parameters.thresholdUsefulPost and post.moderateReason is empty %} wf_useful_post{% endif %}">
+        <div class="mt-4 col-10{% if post.voteUp >= parameters.thresholdUsefulPost and post.moderateReason is empty %} wf_useful_post{% endif %}">
             <p class="wf_date">
                 {{ post.cdate | date(parameters.dateFormat) }}
 
@@ -98,7 +97,6 @@
         </div>
     </div>
     <div>
-
     </div>
     <div class="wf_clear"></div>
 </div>
