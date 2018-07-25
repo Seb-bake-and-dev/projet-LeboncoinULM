@@ -45,7 +45,7 @@
                 {% endif %}
             </p>
             {# POST CONTENT #}
-            <div id="wf_post{{ post.id }}">
+            <div id="wf_post{{ post.id }}" class="jumbotron pt-4 pb-4">
                 {% if post.moderateReason is empty %}
                     {{ post.content |  quote | markdown | replace({'\n':'<br />'})| smiley |  raw }}
                 {% else %}
