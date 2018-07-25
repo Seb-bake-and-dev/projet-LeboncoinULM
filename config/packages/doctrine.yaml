@@ -17,6 +17,8 @@ doctrine:
 
         url: '%env(resolve:DATABASE_URL)%'
     orm:
+        resolve_target_entities:
+            Yosimitso\WorkingForumBundle\Entity\User: App\Entity\User
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true

@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity(fields="email", message="Email déjà pris")
  * @UniqueEntity(fields="username", message="Username déjà pris")
  */
-class User implements UserInterface, \Serializable
+class User extends \Yosimitso\WorkingForumBundle\Entity\User implements UserInterface, \Serializable
 {
     /**
      * @var int
@@ -24,7 +24,7 @@ class User implements UserInterface, \Serializable
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -32,7 +32,7 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string")
      * @Assert\NotBlank()
      */
-    private $fullName;
+    protected $fullName;
 
     /**
      * @var string
@@ -40,7 +40,7 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string", unique=true)
      * @Assert\NotBlank()
      */
-    private $username;
+    protected $username;
 
     /**
      * @var string
@@ -49,47 +49,43 @@ class User implements UserInterface, \Serializable
      * @Assert\NotBlank()
      * @Assert\Email()
      */
-    private $email;
+    protected $email;
 
     /**
      * @var string
      *
      * @ORM\Column(type="string", length=64)
      */
-    private $password;
+    protected $password;
     /**
      * @var string
      *
      * @ORM\Column(type="integer", length=64)
      */
-    private $phone;
+    protected $phone;
 
     /**
      * @var array
      *
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    protected $roles = [];
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="user")
      */
-    private $user;
+    protected $user;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Announce", mappedBy="user")
      */
-    private $announces;
+    protected $announces;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Favorite", mappedBy="user")
      */
-    private $favorites;
+    protected $favorites;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\FMessage", mappedBy="user")
-     */
-    private $fMessages;
 
     public function __toString()
     {
@@ -121,14 +117,24 @@ class User implements UserInterface, \Serializable
         return $this->fullName;
     }
 
-    public function getUsername(): ?string
+    /**
+     * @return string
+     */
+    public function getUsername()
     {
         return $this->username;
     }
 
-    public function setUsername(string $username): void
+    /**
+     * @param string $username
+     *
+     * @return User
+     */
+    public function setUsername($username)
     {
         $this->username = $username;
+
+        return $this;
     }
 
     public function getEmail(): ?string
@@ -317,36 +323,4 @@ class User implements UserInterface, \Serializable
 
         return $this;
     }
-
-    /**
-     * @return Collection|FMessage[]
-     */
-    public function getFMessages(): Collection
-    {
-        return $this->fMessages;
-    }
-
-    public function addFMessage(FMessage $fMessage): self
-    {
-        if (!$this->fMessages->contains($fMessage)) {
-            $this->fMessages[] = $fMessage;
-            $fMessage->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFMessage(FMessage $fMessage): self
-    {
-        if ($this->fMessages->contains($fMessage)) {
-            $this->fMessages->removeElement($fMessage);
-            // set the owning side to null (unless already changed)
-            if ($fMessage->getUser() === $this) {
-                $fMessage->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
 }
