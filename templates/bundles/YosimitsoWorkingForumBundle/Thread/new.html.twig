@@ -11,10 +11,7 @@
             <script src="{{ asset('bundles/yosimitsoworkingforum/showdown/src/extensions/twitter.js') }}"></script>
             <script src="{{ asset('bundles/yosimitsoworkingforum/js/nicefileinput/jquery.nicefileinput.min.js') }}"></script>
             <link rel="stylesheet" href="{{ asset('bundles/yosimitsoworkingforum/markdown/css/bootstrap.min.css') }}"
-                  type="text/css" media="all"/>
-            <link rel="stylesheet"
-                  href="{{ asset('bundles/yosimitsoworkingforum/markdown/css/bootstrap-markdown.min.css') }}"
-                  type="text/css" media="all"/>
+            type="text/css" media="all"/>
 
             <script type="text/javascript">
                 jQuery(document).ready(function () {
@@ -39,37 +36,29 @@
             </script>
             <div class="container pt-5">
 
-                <div id="wf_forum_content">
-                    {% include '@YosimitsoWorkingForum/Common/flashmsg.html.twig' %}
-                    {% include '@YosimitsoWorkingForum/Common/breadcrumb.html.twig' with {'subforum': subforum, 'extraPath': ['forum.new_thread' | trans] } only %}
-                    <div class="wf_new_thread">
+                {% include '@YosimitsoWorkingForum/Common/flashmsg.html.twig' %}
+                {% include '@YosimitsoWorkingForum/Common/breadcrumb.html.twig' with {'subforum': subforum, 'extraPath': ['forum.new_thread' | trans] } only %}
 
-                        <h1>{{ ('forum.new_thread' | trans) }} {{ ('forum.into_forum' | trans) }}
-                            <em>{{ subforum.name }}</em></h1>
-                        <div class="wf_new_thread_content">
+                <h5 class="card-title col-12 mt-5">{{ ('forum.new_thread' | trans) }} {{ ('forum.into_forum' | trans) }}
+                    <em>{{ subforum.name }}</em>
+                </h5>
+                {{ form_start(form) }}
+                {{ form_row(form.label) }}
+                <p>{{ form_row(form.sublabel) }}</p>
+                {% embed '@YosimitsoWorkingForum/Post/textarea.html.twig' with {'pin': (form.pin is defined) ? form.pin : null, 'form': form.post.0, 'parameters': parameters, 'submitLabelKey': 'forum.create_thread'} only %}
 
-
-                            {{ form_start(form) }}
-                            <p>{{ form_label(form.label) }}</p>
-                            <p>{{ form_widget(form.label) }}</p>
-
-                            <p>{{ form_label(form.sublabel) }}</p>
-                            <p>{{ form_widget(form.sublabel) }}</p>
-                            {% embed '@YosimitsoWorkingForum/Post/textarea.html.twig' with {'pin': (form.pin is defined) ? form.pin : null, 'form': form.post.0, 'parameters': parameters, 'submitLabelKey': 'forum.create_thread'} only %}
-
-                                {% block extraInput %}
-                                    {% if (pin) %}
-                                        <p>{{ form_widget(pin) }} {{ form_label(pin) }}</p>
-                                    {% endif %}
-                                    {{ form_rest(form) }}
-                                {% endblock %}
-                            {% endembed %}
-                            {{ form_end(form) }}
+                    {% block extraInput %}
+                        {% if (pin) %}
+                            <p>{{ form_widget(pin) }} {{ form_label(pin) }}</p>
+                        {% endif %}
+                        {{ form_rest(form) }}
+                    {% endblock %}
+                {% endembed %}
+                {{ form_end(form) }}
 
 
-                        </div>
-                    </div>
-                </div>
             </div>
+            </div>
+
         {% endblock %}
     {% endblock %}

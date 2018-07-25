@@ -21,8 +21,6 @@
             <script src="{{ asset('bundles/yosimitsoworkingforum/showdown/src/extensions/twitter.js') }}"></script>
             <script src="{{ asset('bundles/yosimitsoworkingforum/showdown/src/extensions/github.js') }}"></script>
             <script src="{{ asset('bundles/yosimitsoworkingforum/js/nicefileinput/jquery.nicefileinput.min.js') }}"></script>
-        <link rel="stylesheet" href="{{ asset('bundles/yosimitsoworkingforum/markdown/css/bootstrap.min.css') }}"
-              type="text/css" media="all"/>
         <link rel="stylesheet"
               href="{{ asset('bundles/yosimitsoworkingforum/markdown/css/bootstrap-markdown.min.css') }}"
               type="text/css" media="all"/>
@@ -42,28 +40,32 @@
                 });
             </script>
             {% include '@YosimitsoWorkingForum/Thread/thread.js.twig' %}
+            <h5 class="card-title col-7 mt-3">{{ thread.label }}</h5>
 
-            {# LOCK #}
-            {% if thread.locked %}
-            <p>
-                <a class="wf_button wf_button-grey">
-                    <span class="wf_locked"></span>{{ 'forum.thread_locked' | trans() }}
-                </a>
-            </p>
-            {% else %}
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") and not autolock %}
-            <p>
-                <a class="wf_button" href="#wf_new_post">{{ 'forum.reply' | trans }}</a>
-            </p>
-            {% endif %}
-            {% endif %}
+            <div class="row">
+                <h7 class="ml-3 col-10">{{ thread.sublabel }}</h7>
 
+                {% if thread.locked %}
+                    <p>
+                        <a class="wf_button wf_button-grey">
+                            <span class="wf_locked"></span>{{ 'forum.thread_locked' | trans() }}
+                        </a>
+                    </p>
+                {% else %}
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") and not autolock %}
+                        <p>
+                            <a class="bg-dark btn btn-dark btn-sm" href="#wf_new_post">{{ 'forum.reply' | trans }}</a>
+                        </p>
+                    {% endif %}
+                {% endif %}
+            </div>
+        <hr>
             {# ACTIONS LIST FOR MODERATOR #}
             {% if (is_granted("ROLE_SUPER_ADMIN") or is_granted("ROLE_ADMIN") or is_granted("ROLE_MODERATOR")) %}
             <ul class="wf_action_list">
                 {% if not thread.locked %}
                     <li>
-                        <a class="wf_button wf_icon-lock"
+                        <a class="bg-dark btn btn-dark btn-sm"
                            href="{{ path('workingforum_lock_thread',{'subforum_slug' : subforum.slug, 'thread_slug' : thread.slug}) }}">
                             {{ 'forum.lock' | trans }}
                         </a>
@@ -71,13 +73,14 @@
                 {% endif %}
                 {% if moveThread %}
                     <li>
-                        <a class="wf_button" id="wf_move_thread_button">&rarr; {{ 'forum.move_thread' | trans }}</a>
+                        <a class="bg-dark btn btn-dark btn-sm"
+                           id="wf_move_thread_button">&rarr; {{ 'forum.move_thread' | trans }}</a>
                         {{ form_widget(moveThread.forum) }}
                     </li>
                 {% endif %}
                 {% if allowModeratorDeleteThread %}
                     <li>
-                        <a class="wf_button wf_icon-remove"
+                        <a class="bg-dark btn btn-dark btn-sm"
                            onclick="if (!confirm('{{ 'forum.confirm_delete_thread' | trans }}')) { return false; }"
                            href="{{ path('workingforum_delete_thread',{'threadSlug': thread.slug}) }}">
                             {{ 'forum.delete_thread' | trans }}
@@ -86,7 +89,7 @@
                 {% endif %}
                 {% if not thread.pin %}
                     <li>
-                        <a class="wf_button wf_icon-pin"
+                        <a class="bg-dark btn btn-dark btn-sm"
                            href="{{ path('workingforum_pin_thread',{'subforum_slug' : subforum.slug, 'thread_slug' : thread.slug}) }}">
                             {{ 'forum.pin_thread' | trans }}
                         </a>
@@ -94,9 +97,7 @@
                 {% endif %}
             </ul>
             {% endif %}
-            <div class="wf_thread">
-            <h1>{{ thread.label }}</h1>
-            <h5>{{ thread.sublabel }}</h5>
+
 
             {% for post in post_list %}
                 {% include '@YosimitsoWorkingForum/Post/post.html.twig' with {'post': post, 'thread': thread, 'parameters': parameters, 'hasAlreadyVoted': hasAlreadyVoted, 'autolock': autolock, 'loop': loop} only %}
@@ -127,10 +128,9 @@
             {% endif %}
             {% else %}
 
-            <div class="wf_new_post">
+            <div class="wf_new_post col-12">
                 <p class="wf_post_a_message">{{ 'forum.no_message_locked' | trans }}</p>
             </div>
-
 
             {% endif %}
             {% endif %}
