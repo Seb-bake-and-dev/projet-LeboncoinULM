@@ -17,6 +17,13 @@ input::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+#region_filter{
+  height: 37px;
+}
+
+.sortable{
+  margin-top: -5px;
+}
 
 /* The switch - the box around the slider */
 .toggle
