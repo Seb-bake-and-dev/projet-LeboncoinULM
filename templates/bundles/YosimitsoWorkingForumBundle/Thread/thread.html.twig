@@ -45,19 +45,6 @@
             <div class="row">
                 <h7 class="ml-3 col-10">{{ thread.sublabel }}</h7>
 
-                {% if thread.locked %}
-                    <p>
-                        <a class="wf_button wf_button-grey">
-                            <span class="wf_locked"></span>{{ 'forum.thread_locked' | trans() }}
-                        </a>
-                    </p>
-                {% else %}
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") and not autolock %}
-                        <p>
-                            <a class="bg-dark btn btn-dark btn-sm" href="#wf_new_post">{{ 'forum.reply' | trans }}</a>
-                        </p>
-                    {% endif %}
-                {% endif %}
             </div>
         <hr>
             {# ACTIONS LIST FOR MODERATOR #}

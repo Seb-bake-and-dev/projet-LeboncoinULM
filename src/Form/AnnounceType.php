@@ -53,20 +53,25 @@ class AnnounceType extends AbstractType
                 'label' => 'Prix de vente',
             ])
             ->add('imageFile', FileType::class, [
-                'required' => false,
-                'attr' => ['name' => 'chooseFile', 'id' => 'chooseFile', 'type' => 'file']
+                'label' => 'Ajouter une image',
+                'required' => true,
+                'attr' => [
+                    'type' => 'file'
+                ]
             ])
             ->add('imageFile2', FileType::class, [
                 'label' => 'Ajouter une seconde image',
                 'required' => false,
-                'attr' => ['name' => 'chooseFile2', 'id' => 'chooseFile2', 'type' => 'file']
-
+                'attr' => [
+                    'type' => 'file2'
+                ]
             ])
             ->add('imageFile3', FileType::class, [
                 'label' => 'Ajouter une troisième image',
                 'required' => false,
-                'attr' => ['name' => 'chooseFile3', 'id' => 'chooseFile3', 'type' => 'file']
-
+                'attr' => [
+                    'type' => 'file3'
+                ]
             ])
             ->add('Marque', TextType::class, [
                 'label' => 'Marque de l\'ulm',

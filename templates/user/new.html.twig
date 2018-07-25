@@ -23,46 +23,25 @@
                 {{ form_row(form.transponder) }}
             </div>
             <div class="col-11 mt-3">
-                {{ form_errors(form.imageFile) }}
-                <div class="file-upload">
-                    <div class="file-select">
-                        <div class="file-select-button" id="fileName">Ajouter une image</div>
-                        <div class="file-select-name" id="noFile">Pas encore de fichier ajouté...</div>
-                        {{ form_widget(form.imageFile) }}
-                    </div>
-                </div>
+                {{ form_row(form.imageFile) }}
             </div>
-            <div class="col-1 pl-3 mt-4 plus" id="plus">
+            <div class="col-1 pl-3 mt-5 plus" id="plus">
                 <i class="fas fa-plus"></i>
             </div>
-            <div class="col-1 mt-4 plus d-none" id="minus">
+            <div class="col-1 mt-5 plus d-none" id="minus">
                 <i class="fas fa-minus"></i>
             </div>
             <div class="col-11 d-none mt-3 d-none" id="showUpload">
-                {{ form_errors(form.imageFile2) }}
-                <div class="file-upload">
-                    <div class="file-select">
-                        <div class="file-select-button" id="fileName">Ajouter une image</div>
-                        <div class="file-select-name" id="noFile2">Pas encore de fichier ajouté...</div>
-                        {{ form_widget(form.imageFile2) }}
-                    </div>
-                </div>
+                {{ form_row(form.imageFile2) }}
             </div>
-            <div class="col-1 mt-4 plus d-none" id="plus1">
+            <div class="col-1 mt-5 plus d-none" id="plus1">
                 <i class="fas fa-plus"></i>
             </div>
-            <div class="col-1 mt-4 plus d-none" id="minus1">
+            <div class="col-1 mt-5 plus d-none" id="minus1">
                 <i class="fas fa-minus"></i>
             </div>
             <div class="col-11 d-none mt-3 d-none" id="showUpload1">
-                {{ form_errors(form.imageFile3) }}
-                <div class="file-upload">
-                    <div class="file-select">
-                        <div class="file-select-button" id="fileName">Ajouter une image</div>
-                        <div class="file-select-name" id="noFile3">Pas encore de fichier ajouté...</div>
-                        {{ form_widget(form.imageFile3) }}
-                    </div>
-                </div>
+                {{ form_row(form.imageFile3) }}
             </div>
             <div class="col-12 mt-4">{{ form_row(form.Description) }}</div>
         </div>

@@ -59,37 +59,17 @@ $('input[type="checkbox"]').prop("checked", false).change(function () {
     $("#formMessage").slideToggle(300);
 
 });
-$('#announce_imageFile').bind('change', function () {
-    var filename = $("#announce_imageFile").val();
-    if (/^\s*$/.test(filename)) {
-        $(".file-upload").removeClass('active');
-        $("#noFile").text("No file chosen...");
-    }
-    else {
-        $(".file-upload").addClass('active');
-        $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
-    }
+
+$('#announce_imageFile').change(function () {
+    let path = this.files[0].name;
+    $('#announce_imageFile').next().text(path);
 });
-$('#announce_imageFile2').bind('change', function () {
-    var filename = $("#announce_imageFile2").val();
-    if (/^\s*$/.test(filename)) {
-        $(".file-upload").removeClass('active');
-        $("#noFile2").text("No file chosen...");
-    }
-    else {
-        $(".file-upload").addClass('active');
-        $("#noFile2").text(filename.replace("C:\\fakepath\\", ""));
-    }
+$('#announce_imageFile2').change(function () {
+    let path = this.files[0].name;
+    $('#announce_imageFile2').next().text(path);
 });
-$('#announce_imageFile3').bind('change', function () {
-    var filename = $("#announce_imageFile3").val();
-    if (/^\s*$/.test(filename)) {
-        $(".file-upload").removeClass('active');
-        $("#noFile2").text("No file chosen...");
-    }
-    else {
-        $(".file-upload").addClass('active');
-        $("#noFile3").text(filename.replace("C:\\fakepath\\", ""));
-    }
+$('#announce_imageFile3').change(function () {
+    let path = this.files[0].name;
+    $('#announce_imageFile3').next().text(path);
 });
 

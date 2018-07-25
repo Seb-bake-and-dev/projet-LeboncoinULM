@@ -2,26 +2,26 @@
 <div class="wf_new_post mt-5 w-100" id="wf_new_post">
     {% block header %}
     {% endblock %}
-    <script>
-        jQuery(document).ready(function() {
-            jQuery('.wf_add_enclosed_file').click(function(e)
-            {
-                e.preventDefault();
-                var index = jQuery('#wf_enclosed_files_list li').length;
-                var prototype = jQuery('#wf_enclosed_files_list').data('prototype');
-                prototype = prototype.replace(/__name__/g, index);
+    {#<script>#}
+        {#jQuery(document).ready(function() {#}
+            {#jQuery('.wf_add_enclosed_file').click(function(e)#}
+            {#{#}
+                {#e.preventDefault();#}
+                {#var index = jQuery('#wf_enclosed_files_list li').length;#}
+                {#var prototype = jQuery('#wf_enclosed_files_list').data('prototype');#}
+                {#prototype = prototype.replace(/__name__/g, index);#}
 
-                jQuery('#wf_enclosed_files_list').append('<li>'+prototype+'</li>').show();
-                $('.wf_file_upload input[type=file]').nicefileinput();
-            });
+                {#jQuery('#wf_enclosed_files_list').append('<li>'+prototype+'</li>').show();#}
+                {#$('.wf_file_upload input[type=file]').nicefileinput();#}
+            {#});#}
 
-            jQuery('.wf_insert-smiley').click(function(e) {
-                e.preventDefault();
-                var key = jQuery(this).data('key');
-                jQuery('.wf_textarea_post').insertAtCaret(key);
-            });
-        });
-    </script>
+            {#jQuery('.wf_insert-smiley').click(function(e) {#}
+                {#e.preventDefault();#}
+                {#var key = jQuery(this).data('key');#}
+                {#jQuery('.wf_textarea_post').insertAtCaret(key);#}
+            {#});#}
+        {#});#}
+    {#</script>#}
     {#<div id="wf_smiley">#}
         {#<ul>#}
             {#{% for key,smiley in listSmiley %}#}
