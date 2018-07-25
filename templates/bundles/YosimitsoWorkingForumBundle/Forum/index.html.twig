@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+    {% block content %}
+        {% block forum %}
+            {% include '@YosimitsoWorkingForum/Common/header.html.twig' %}
+            {% trans_default_domain 'YosimitsoWorkingForumBundle' %}
+            <div class="container pt-5">
+                <h5 class="card-title col-7 mt-5">Bienvenue sur le forum</h5>
+                <div id="wf_forum">
+                    <p>
+                        {% if (is_granted("ROLE_SUPER_ADMIN") or is_granted("ROLE_ADMIN")) or is_granted("ROLE_MODERATOR") %}
+                            <a class="btn-dark btn"
+                               href="{{ path('workingforum_admin') }}">{{ 'forum.admin_access' | trans }}</a>
+                        {% endif %}
+                        {% include '@YosimitsoWorkingForum/Common/search_button.html.twig' %}
+                        <a class="btn-dark btn" href="{{ path('workingforum_rules') }}"
+                           class="wf_button">{{ 'forum.forum_rules' |trans }}</a>
+                    </p>
+                    {% for forum in list_forum %}
+                        <div class="wf_forum">
+                            <table class="table table-striped">
+                                {% for subforum in forum.subForum %}
+                                    <tr>
+                                        <td class="wf_sub_name"><a class="text-dark"
+                                                    href="{{ path('workingforum_subforum', {'subforum_slug' : subforum.slug }) }}">{{ subforum.name }}</a>
+                                        </td>
+                                        <td class="wf_sub_stat">{{ subforum.nbThread | number_format }} {{ 'forum.nbThread' | trans }}
+                                            <br/>{{ subforum.nbPost | number_format }} {{ 'forum.nbPost' | trans }}</td>
+                                        <td class="wf_sub_lastreply">
+                                            {% if subforum.nbPost > 0 %}
+                                                {{ 'forum.last_reply_date' |trans }}
+                                                <br/>
+                                                {{ subforum.lastReplyDate | date('d/m/Y H:i:s') }}
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            </div>
+        {% endblock %}
+    {% endblock %}
+
