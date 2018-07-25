@@ -48,7 +48,7 @@
 
                     {% block extraInput %}
                         {% if (pin) %}
-                            <p>{{ form_widget(pin) }} {{ form_label(pin) }}</p>
+                                {{ form_row(pin) }}
                         {% endif %}
                         {{ form_rest(form) }}
                     {% endblock %}

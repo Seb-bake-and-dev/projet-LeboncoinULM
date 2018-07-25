@@ -1,25 +1,26 @@
 {
-    "devDependencies": {
-        "@symfony/webpack-encore": "^0.19.0",
-        "node-sass": "^4.9.2",
-        "sass-loader": "^7.0.3"
-    },
-    "license": "UNLICENSED",
-    "private": true,
-    "scripts": {
-        "dev-server": "encore dev-server",
-        "dev": "encore dev",
-        "watch": "encore dev --watch",
-        "build": "encore production"
-    },
-    "dependencies": {
-        "ajv": "^6.5.2",
-        "bootstrap": "^4.1.1",
-        "bootswatch": "^4.1.1",
-        "bootswatch-sass": "^3.2.0",
-        "jquery": "^3.3.1",
-        "popper": "^1.0.1",
-        "popper.js": "^1.14.3",
-        "webpack-notifier": "^1.6.0"
-    }
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.19.0",
+    "node-sass": "^4.9.2",
+    "sass-loader": "^7.0.3"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "dev-server": "encore dev-server",
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^11.0.1",
+    "ajv": "^6.5.2",
+    "bootstrap": "^4.1.1",
+    "bootswatch": "^4.1.1",
+    "bootswatch-sass": "^3.2.0",
+    "jquery": "^3.3.1",
+    "popper": "^1.0.1",
+    "popper.js": "^1.14.3",
+    "webpack-notifier": "^1.6.0"
+  }
 }

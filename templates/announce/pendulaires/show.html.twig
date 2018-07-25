@@ -62,7 +62,7 @@
                 maxi: </strong>{% if announce.vitesseMax %} {{ announce.vitesseMax }} km/h {% else %} Non renseignées. {% endif %}
 
         </p>
-        <p class="mb-5 text-justify"><strong>Description:</strong> {{ announce.description|nl2br }}</p>
+        <p class="mb-5 text-justify"><strong>Description:</strong> {{ announce.description|raw }}</p>
         <div class="pb-5">
             <a href="{{ path('announce_pendulaires') }}" class="btn btn-dark float-left">
                 <i class="fas fa-chevron-left"></i> Retour aux annonces</a>

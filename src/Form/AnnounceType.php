@@ -19,6 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class AnnounceType extends AbstractType
 {
@@ -105,11 +106,11 @@ class AnnounceType extends AbstractType
                 'label' => 'Transpondeur:',
                 'required' => false,
             ])
-            ->add('Description', TextareaType::class, [
-                'required' => true,
-                'label' => 'Description de l\'annonce',
-                'attr' => ['rows' => '7', 'cols' => '6']
-            ])
+            ->add('Description',  CKEditorType::class, array(
+                'config' => array(
+                    'uiColor' => '#eaeaea',
+                )
+            ))
             ->add('Submit', SubmitType::class, [
                 'label' => 'Envoyer',
                 'attr' => [
