@@ -94,20 +94,20 @@
                 </ul>
             </div>
             <div class="tab-pane fade text-center mt-5" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <div class="well bg-light p-5">
-                    <img class="wf_cadre-img mb-3" src="
+                <div class="well bg-light p-5 row">
+                    <img class="img-responsive w-25 mb-3 col-3" src="
             {% if app.user.avatarUrl is not empty %}
             {{ app.user.avatarUrl }}
             {% else %}
             {{ asset('bundles/yosimitsoworkingforum/images/avatar/default.png') }}
             {% endif %}"/>
-                    <p><i class="fas fa-user-circle text-success"></i> <strong>Pseudo:</strong> {{ app.user.username }}
+                    <div class="col-9"><p><i class="fas fa-user-circle text-success"></i> <strong>Pseudo:</strong> {{ app.user.username }}
                     </p>
                     <p><i class="far fa-user-circle"></i> <strong>Nom:</strong> {{ app.user.fullname }}</p>
                     <p><i class="fas fa-envelope text-info"></i> <strong>Email:</strong> {{ app.user.email }}</p>
                     <p><i class="fas fa-phone text-warning"></i> <strong>Téléphone:</strong> {{ app.user.phone }}</p>
                     <a href="{{ path('announce_pendulaires') }}" class="btn btn-primary">Editer votre compte</a>
-                </div>
+                </div></div>
             </div>
             <div class="tab-pane fade text-center mt-5" id="favorite" role="favpanel" aria-labelledby="favorite-tab">
                 <ul class="cards mt-3">
