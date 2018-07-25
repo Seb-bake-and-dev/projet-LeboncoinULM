@@ -1,5 +1,5 @@
 {% trans_default_domain 'YosimitsoWorkingForumBundle' %}
-<div class="wf_new_post" id="wf_new_post">
+<div class="wf_new_post mt-5" id="wf_new_post">
     {% block header %}
     {% endblock %}
     <script>
@@ -22,16 +22,16 @@
             });
         });
     </script>
-    <div id="wf_smiley">
-        <ul>
-            {% for key,smiley in listSmiley %}
-                <li><a href="#" class="wf_insert-smiley" data-key="{{ key }}"><img
-                                src="{{ asset('bundles/yosimitsoworkingforum/images/smiley/'~smiley) }}"/></a>
-                </li>
-            {% endfor %}
-        </ul>
+    {#<div id="wf_smiley">#}
+        {#<ul>#}
+            {#{% for key,smiley in listSmiley %}#}
+                {#<li><a href="#" class="wf_insert-smiley" data-key="{{ key }}"><img#}
+                                {#src="{{ asset('bundles/yosimitsoworkingforum/images/smiley/'~smiley) }}"/></a>#}
+                {#</li>#}
+            {#{% endfor %}#}
+        {#</ul>#}
 
-    </div>
+    {#</div>#}
     <div class="wf_clear"></div>
     <p>{{ form_widget(form.content) }}</p>
 
@@ -53,6 +53,7 @@
     {% endif %}
     {% block extraInput %}
     {% endblock %}
-    <p><input type="submit" value="{{ submitLabelKey | trans }}"
-              class="wf_button wf_width100"/></p>
+    <div class="row mx-auto d-flex justify-content-center">
+        <input type="submit" value="Envoyer"
+              class="btn btn-dark w-50"/></div>
 </div>
