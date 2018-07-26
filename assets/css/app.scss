@@ -117,6 +117,14 @@ select {
   width: 5%;
   margin-left: -33px;
 }
-.nav-item2{
+
+.nav-item2 {
   margin-left: -25px;
+}
+
+[title~="Code"] {
+  background-image: url("/images/logo_code.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+
 }
