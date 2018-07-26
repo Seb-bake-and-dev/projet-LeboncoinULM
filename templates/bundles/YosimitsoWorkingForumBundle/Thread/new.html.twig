@@ -55,7 +55,9 @@
                 {% endembed %}
                 {{ form_end(form) }}
                 </div>
-                {% include '@YosimitsoWorkingForum/Common/breadcrumb.html.twig' with {'subforum': subforum, 'extraPath': ['forum.new_thread' | trans] } only %}
+                <div class="mt-5">
+                    {% include '@YosimitsoWorkingForum/Common/breadcrumb.html.twig' with {'subforum': subforum, 'extraPath': ['forum.new_thread' | trans] } only %}
+                </div>
             </div>
         {% endblock %}
     {% endblock %}
