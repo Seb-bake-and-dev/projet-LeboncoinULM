@@ -35,12 +35,12 @@
             </script>
             <div class="container pt-5">
                 {% include '@YosimitsoWorkingForum/Common/flashmsg.html.twig' %}
-                {% include '@YosimitsoWorkingForum/Common/breadcrumb.html.twig' with {'subforum': subforum, 'extraPath': ['forum.new_thread' | trans] } only %}
 
-                <h5 class="card-title col-12 mt-2">{{ ('forum.new_thread' | trans) }} {{ ('forum.into_forum' | trans) }}
+                <h5 class="card-title col-12 mt-5">{{ ('forum.new_thread' | trans) }} {{ ('forum.into_forum' | trans) }}
                     <em>{{ subforum.name }}</em>
                 </h5>
                 <hr>
+                <div class="mb-3">
                 {{ form_start(form) }}
                 {{ form_row(form.label) }}
                 <p>{{ form_row(form.sublabel) }}</p>
@@ -54,6 +54,8 @@
                     {% endblock %}
                 {% endembed %}
                 {{ form_end(form) }}
+                </div>
+                {% include '@YosimitsoWorkingForum/Common/breadcrumb.html.twig' with {'subforum': subforum, 'extraPath': ['forum.new_thread' | trans] } only %}
             </div>
         {% endblock %}
     {% endblock %}
