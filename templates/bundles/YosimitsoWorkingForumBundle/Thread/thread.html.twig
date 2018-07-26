@@ -40,7 +40,7 @@
                 });
             </script>
             {% include '@YosimitsoWorkingForum/Thread/thread.js.twig' %}
-            <h5 class="card-title col-7 mt-3">{{ thread.label }} - {{ thread.sublabel }}</h5>
+            <h5 class="card-title col-12 mt-2">{{ thread.label|capitalize }} - {{ thread.sublabel }}</h5>
 
         <hr>
             {# ACTIONS LIST FOR MODERATOR #}

@@ -1,5 +1,5 @@
 yosimitso_working_forum:
-    thread_per_page: 50
+    thread_per_page: 10
     post_per_page: 10
     date_format: 'Y/m/d H:i:s'
     allow_anonymous_read: true             # ALLOW OR NOT ACCESS TO ANONYMOUS USERS
