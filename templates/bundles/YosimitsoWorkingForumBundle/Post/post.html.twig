@@ -45,12 +45,14 @@
                 {% endif %}
             </p>
             {# POST CONTENT #}
+            <div class="row mx-auto">
             <div id="wf_post{{ post.id }}" class="jumbotron pt-4 pb-4">
                 {% if post.moderateReason is empty %}
                     {{ post.content |  quote | markdown | replace({'\n':'<br />'})| smiley |  raw }}
                 {% else %}
                     <p class="wf_moderate">{{ 'forum.post_moderated' |trans }} {{ post.moderateReason }}</p>
                 {% endif %}
+            </div>
             </div>
             {# POST VOTE #}
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") and loop.index != 1 and post.user.id != app.user.id and post.moderateReason is empty and not thread.locked and not autolock %}
