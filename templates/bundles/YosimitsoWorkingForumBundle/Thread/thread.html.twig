@@ -3,7 +3,7 @@
         {% block forum %}
             {% include '@YosimitsoWorkingForum/Common/header.html.twig' %}
             {% trans_default_domain 'YosimitsoWorkingForumBundle' %}
-            <div class="container pt-5">
+            <div class="container pt-4">
             <div id="wf_forum_content">
             {% include '@YosimitsoWorkingForum/Common/flashmsg.html.twig' %}
             {% include '@YosimitsoWorkingForum/Common/breadcrumb.html.twig' with {'subforum': subforum, 'thread': thread} only %}
@@ -40,12 +40,8 @@
                 });
             </script>
             {% include '@YosimitsoWorkingForum/Thread/thread.js.twig' %}
-            <h5 class="card-title col-7 mt-3">{{ thread.label }}</h5>
+            <h5 class="card-title col-7 mt-3">{{ thread.label }} - {{ thread.sublabel }}</h5>
 
-            <div class="row">
-                <h7 class="ml-3 col-10">{{ thread.sublabel }}</h7>
-
-            </div>
         <hr>
             {# ACTIONS LIST FOR MODERATOR #}
             {% if (is_granted("ROLE_SUPER_ADMIN") or is_granted("ROLE_ADMIN") or is_granted("ROLE_MODERATOR")) %}
@@ -95,17 +91,17 @@
             {% if not thread.locked %}
             {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <div class="wf_new_post">
-                <p class="wf_post_a_message">{{ 'forum.no_message_login' | trans }}</p>
+                <p class="text-dark font-weight-bold float-left">{{ 'forum.no_message_login' | trans }}</p>
             </div>
             {% elseif autolock %}
             <div class="wf_new_post">
-                <p class="wf_post_a_message">{{ 'forum.thread_too_old_locked' | trans }}</p>
+                <p class="text-dark font-weight-bold float-left">{{ 'forum.thread_too_old_locked' | trans }}</p>
             </div>
             {% else %}
             {{ form_start(form) }}
             {% embed '@YosimitsoWorkingForum/Post/textarea.html.twig' with {'form': form, 'parameters': parameters, 'submitLabelKey': 'forum.submit_post'} only %}
         {% block header %}
-            <p class="wf_post_a_message">{{ 'forum.post_a_message' | trans([], 'YosimitsoWorkingForumBundle') }}</p>
+            <p class="text-dark font-weight-bold float-left">{{ 'forum.post_a_message' | trans([], 'YosimitsoWorkingForumBundle') }}</p>
         {% endblock %}
             {% block extraInput %}
                 {{ form_rest(form) }}
