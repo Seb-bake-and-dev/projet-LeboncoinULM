@@ -124,7 +124,70 @@ select {
 
 [title~="Code"] {
   background-image: url("/images/logo_code.png");
-  background-size: contain;
+  background-size: 15px;
   background-repeat: no-repeat;
+  background-position: center;
 
+}
+[title~="Bold"] {
+  background-image: url("/images/logo_bold.png");
+  background-size: 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
+[title~="Italic"] {
+  background-image: url("/images/logo_italic.png");
+  background-size: 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+[title~="Heading"] {
+  background-image: url("/images/logo_heading.png");
+  background-size: 15px;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
+[title~="URL/Link"] {
+  background-image: url("/images/logo_link.png");
+  background-size: 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+[title~="Image"] {
+  background-image: url("/images/logo_image.png");
+  background-size: 15px;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
+[title~="Unordered"] {
+  background-image: url("/images/logo_list.png");
+  background-size: 15px;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
+[title~="Ordered"] {
+  background-image: url("/images/logo_thlist.png");
+  background-size: 15px;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
+[title~="Quote"] {
+  background-image: url("/images/logo_quote.png");
+  background-size: 15px;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
+
+#wf_new_post #post_content{
+  border: 1px solid #eaeaea;
+
+}
+.btn-toolbar{
+float:left;
 }
